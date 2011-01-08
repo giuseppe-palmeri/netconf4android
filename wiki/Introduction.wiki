@@ -42,6 +42,9 @@ More information about the Netconf protocol can be found here:
     http://www.netconfcentral.org
 
     http://trac.tools.ietf.org/wg/netconf/trac/wiki
+---
+= Quick Start =
 
-
+To quickly learn to use the library, you simply follow the [http://pippo following guide]:
+---
 Copyright (c) 2010, Giuseppe Palmeri
