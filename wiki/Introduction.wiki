@@ -42,9 +42,14 @@ More information about the Netconf protocol can be found here:
     http://www.netconfcentral.org
 
     http://trac.tools.ietf.org/wg/netconf/trac/wiki
----
+
 = Quick Start =
 
-To quickly learn to use the library, you simply follow the [http://pippo following guide]:
----
+To quickly learn to use the library, you will have to read the [http://code.google.com/p/netconf4android/wiki/QuickStart following guide].
+
+The guide shows you step by step how to create a Netconf application. :)
+
+In addition, you can always consult the [http://netconf4android.googlecode.com/svn-history/Netconf4Android/doc/index.html javadoc] of the API.
+
 Copyright (c) 2010, Giuseppe Palmeri
+All right reserved. 
