@@ -1,4 +1,5 @@
 #summary netconf4android - Android and Java client API for Netconf applications.
+#labels Featured,Netconf,RFC4741,RFC4742,RFC6020
 
 = Introduction =
 
@@ -28,15 +29,18 @@ being prepared to receive RPC calls of various kinds.
 Here are some projects more or less advanced
 with the knowledge that you have to do to use this library.
 
-   <b>Yuma Tools</b> http://www.netconfcentral.org
+   <b>Yuma Tools</b> http://www.netconfcentral.org - Network Configuration Tools
 
 
 More information about the Netconf protocol can be found here:
 
-    http://datatracker.ietf.org/doc/search/?name=netconf&rfcs=on
+    http://en.wikipedia.org/wiki/NETCONF
 
-or here:
+    http://datatracker.ietf.org/doc/search/?name=netconf&rfcs=on
 
     http://www.netconfcentral.org
 
     http://trac.tools.ietf.org/wg/netconf/trac/wiki
+
+
+Copyright (c) 2010, Giuseppe Palmeri
