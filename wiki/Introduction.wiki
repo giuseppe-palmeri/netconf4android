@@ -30,7 +30,7 @@ Here are some projects more or less advanced
 with the knowledge that you have to do to use this library.
 
    <b>Yuma Tools</b> http://www.netconfcentral.org - Network Configuration Tools
-
+   <b>pyang</b> http://code.google.com/p/pyang - An extensible YANG validator and converter in python
 
 More information about the Netconf protocol can be found here:
 
