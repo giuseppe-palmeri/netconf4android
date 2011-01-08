@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:shadowColor">#FF000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">0.2</item>
+        <item name="android:textSize">16dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Button2" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FF8822</item>
+        <item name="android:shadowColor">#FF000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">0.2</item>
+        <item name="android:textSize">16dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+    
+<style name="Label">
+        <item name="android:textColor">#004400</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:shadowColor">#FF000000</item>
+</style>
+
+<style name="Host">
+        <item name="android:textColor">#000044</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:shadowColor">#FF000000</item>
+</style>
+
+<style name="Proxy">
+        <item name="android:textColor">#440000</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:shadowColor">#FF000000</item>
+</style>
+
+<style name="Panel">
+        <item name="android:background">#DDDDFF</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:shadowColor">#FF000000</item>
+</style>
+
+<style name="TextArea">
+<item name="android:textColor">#004400</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:shadowColor">#FF000000</item>
+</style>
+
+<style name="ToasterText">
+<item name="android:textColor">#004400</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:shadowColor">#FF000000</item>
+</style>
+
+<style name="MainLabel">
+<item name="android:textColor">#004400</item>
+<item name="android:textSize">20dp</item>
+</style>
+
+
+
+</resources>
