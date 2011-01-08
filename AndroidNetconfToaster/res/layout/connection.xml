@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:background="#FFFFFF"
+	android:layout_width="fill_parent" 
+	android:scrollbarAlwaysDrawVerticalTrack="true" 
+	android:scrollbars="vertical" 
+	android:id="@+id/connection" 
+	android:layout_height="wrap_content">
+
+ 
+<LinearLayout 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content" 
+android:layout_gravity="center" 
+android:gravity="center" 
+android:layout_marginTop="5dp">
+
+<Button android:text="@string/saveButton" 
+android:id="@+id/saveButton" 
+android:layout_height="wrap_content" 
+android:layout_marginLeft="10dp" 
+android:layout_marginRight="10dp" android:layout_width="wrap_content">
+</Button><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/discardButton" android:id="@+id/discardButton"></Button>
+
+
+</LinearLayout>
+
+<ScrollView android:id="@+id/scroll" 
+android:layout_width="fill_parent" 
+android:layout_gravity="top" 
+android:layout_height="fill_parent">
+
+<LinearLayout android:id="@+id/LinearScroll" 
+android:orientation="vertical" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content">
+
+<TextView android:text="@string/label1Connection" 
+android:id="@+id/label1Connection" 
+android:layout_height="wrap_content" 
+android:gravity="center_horizontal|center" 
+android:layout_width="fill_parent" 
+android:padding="10dp" style="@style/MainLabel">
+</TextView>
+
+<TableLayout android:id="@+id/tableServer"
+ android:layout_height="wrap_content" 
+ android:layout_width="fill_parent">
+ 
+ <LinearLayout android:id="@+id/tableServerLine1" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:paddingBottom="5dp" 
+ android:paddingLeft="5dp" 
+ android:paddingRight="5dp" 
+ android:paddingTop="5dp">
+ 
+<TextView android:text="@string/labelLabel" 
+android:id="@+id/label" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" 
+android:paddingRight="5dp" 
+android:padding="5dp" 
+android:paddingBottom="5dp"
+android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000">
+</TextView>
+ 
+
+<EditText 
+android:id="@+id/editLabel" 
+android:layout_height="wrap_content" 
+android:padding="5dp" android:paddingRight="10dp" 
+android:gravity="left|center" android:inputType="none|textCapWords" android:layout_gravity="right|fill" android:layout_width="fill_parent"></EditText>
+
+
+</LinearLayout>
+
+</TableLayout>
+
+
+<TableLayout android:id="@+id/tlay2" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear2" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" 
+android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:paddingTop="5dp">
+
+
+<TextView android:text="@string/labelHost" 
+android:id="@+id/labelHost" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:padding="5dp" android:paddingBottom="5dp" 
+android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000">
+</TextView>
+
+<EditText android:text="@string/editHost" 
+android:id="@+id/editHost" 
+android:layout_height="wrap_content"
+android:padding="5dp" android:paddingRight="10dp" android:gravity="left|center" android:inputType="text" android:layout_gravity="right" android:layout_width="fill_parent">
+</EditText>
+
+</LinearLayout>
+</TableLayout>
+
+<TableLayout android:id="@+id/table3" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear3" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:paddingTop="5dp">
+
+<TextView android:text="@string/labelPort" 
+android:id="@+id/labelPort" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:padding="5dp" android:paddingBottom="5dp" 
+android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000"></TextView>
+
+
+<EditText android:text="@string/editPort" 
+android:id="@+id/editPort" 
+android:layout_height="wrap_content"
+android:padding="5dp" android:layout_gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal|center" 
+android:paddingRight="10dp" 
+android:gravity="left|center" android:inputType="none|number" android:layout_width="fill_parent"></EditText>
+
+
+</LinearLayout>
+</TableLayout>
+
+<TableLayout android:id="@+id/table4" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear4" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:paddingTop="5dp">
+
+
+<TextView android:text="@string/labelLogin" 
+android:id="@+id/labelLogin" android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:padding="5dp" 
+android:paddingBottom="5dp" android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000"></TextView>
+
+
+<EditText android:text="@string/editLogin" 
+android:id="@+id/editLogin" 
+android:layout_height="wrap_content" 
+android:padding="5dp" android:paddingRight="10dp" android:gravity="left|center" android:inputType="none|text" android:layout_gravity="right" android:layout_width="fill_parent"></EditText>
+
+
+</LinearLayout></TableLayout>
+
+
+<TableLayout android:id="@+id/table5" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear5" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:paddingTop="5dp">
+
+
+<TextView android:text="@string/labelPasswd" 
+android:id="@+id/labelPasswd" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:padding="5dp" android:paddingBottom="5dp" 
+android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000">
+</TextView>
+
+<EditText android:text="@string/editPasswd" 
+android:id="@+id/editPasswd" android:layout_height="wrap_content" 
+android:padding="5dp" android:paddingRight="10dp" 
+android:gravity="left|center" android:inputType="textPassword" android:layout_gravity="right" android:layout_width="fill_parent"></EditText>
+
+</LinearLayout>
+</TableLayout>
+
+<TableLayout android:id="@+id/table6" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear6" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:paddingTop="5dp">
+
+
+<TextView android:text="@string/labelSubsystem" 
+android:id="@+id/labelSubsystem" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:padding="5dp" android:paddingBottom="5dp" 
+android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000">
+</TextView> 
+
+
+<EditText android:text="@string/editSubSystem" 
+android:id="@+id/editSubsystem" 
+android:layout_height="wrap_content" 
+android:padding="5dp" android:paddingRight="10dp" 
+android:gravity="left|center" android:inputType="text" android:layout_gravity="right" android:layout_width="fill_parent">
+</EditText>
+
+</LinearLayout>
+</TableLayout>
+
+
+
+
+
+
+<CheckBox android:text="@string/label2Connection" 
+android:id="@+id/label2Connection" 
+android:layout_height="wrap_content" 
+android:gravity="center_horizontal|center" 
+android:layout_width="fill_parent" 
+android:padding="10dp" android:clickable="true" android:checked="false" android:textColor="#004400" android:textSize="20dp">
+</CheckBox>
+
+<TableLayout android:id="@+id/table7" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear7" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:paddingTop="5dp">
+
+<TextView android:text="@string/labelProxyHost" 
+android:id="@+id/labelProxyHost" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:padding="5dp" android:paddingBottom="5dp" 
+android:paddingTop="5dp" 
+android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000">
+</TextView>
+
+
+<EditText android:text="@string/editProxyHost" 
+android:id="@+id/editProxyHost" 
+android:layout_height="wrap_content" 
+android:padding="5dp" android:paddingRight="10dp" 
+android:inputType="text" android:layout_width="fill_parent" android:layout_gravity="left" android:gravity="left|center"></EditText>
+
+
+</LinearLayout>
+</TableLayout>
+
+<TableLayout android:id="@+id/table8" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/linear8" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingBottom="5dp" android:paddingLeft="5dp" 
+android:paddingRight="5dp" android:paddingTop="5dp">
+
+<TextView android:text="@string/labelProxyPort" 
+android:id="@+id/labelProxyPort" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:paddingLeft="5dp" android:paddingRight="5dp" 
+android:padding="5dp" android:paddingBottom="5dp" 
+android:paddingTop="5dp" android:layout_gravity="center_vertical|center_horizontal|center" 
+android:textSize="20dp" android:textColor="#000000"></TextView>
+
+
+<EditText android:text="@string/editProxyPort" 
+android:id="@+id/editProxyPort" 
+android:layout_height="wrap_content" 
+android:padding="5dp" android:paddingRight="10dp" 
+android:inputType="number" android:layout_width="fill_parent" android:layout_gravity="left" android:gravity="left|center">
+</EditText>
+
+
+</LinearLayout></TableLayout>
+
+</LinearLayout></ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
