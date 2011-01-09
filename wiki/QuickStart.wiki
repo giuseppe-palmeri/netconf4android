@@ -36,7 +36,7 @@ This is an Eclipse project that you can safely explore and from which to take id
 
 ==Step 1: Setup the Development Environment on Eclipse==
 
-First you must download the *Netconf4Android.zip* archive of the last version of *Netconf4Android API* at this URL:
+First you must download the *netconf4Android.zip* archive of the last version of *netconf4Android API* at this URL:
 
      http://code.google.com/p/netconf4android/downloads/list
 
