@@ -23,3 +23,5 @@ To learn how to install the server, please consult the appropriate documentation
 The home directory of the YUMA Tools project is:
 
     http://www.netconfcentral.org
+
+Once you have familiarized yourself with the server you can easily access the next step.
