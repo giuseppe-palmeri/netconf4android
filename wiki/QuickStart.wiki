@@ -34,6 +34,8 @@ A better Android (and no Java) version of our example is [http://code.google.com
 
 This is an Eclipse project that you can safely explore and from which to take ideas for your Android applications.
 
-==Step 1: Setup the development environment==
+==Step 1: Setup the development environment on Eclipse==
 
-==Step 2: Connectoion to the server==
+==Step 2: Toaster Capability declaration==
+
+==Step 3: Connect to the server==
