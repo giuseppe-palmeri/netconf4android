@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary OLearn to quickly create an application on Android and Java with Netconf4Android.
 
 ==Introduction==
 
