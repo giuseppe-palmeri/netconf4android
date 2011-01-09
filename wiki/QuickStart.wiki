@@ -41,7 +41,21 @@ First you must download the *netconf4Android-Binaries.zip* archive of the last v
      http://code.google.com/p/netconf4android/downloads/list
 
 You'll find in the archive the libraries to use.
+Unzip the archive to a location of your choice.
 
+Inside that directory you will find Netconf4Android-Binaries
+
+Please read very carefully the *_README.txt* and *_LICENSE.txt* files.
+
+You will find them into the *Netconf4Android-Binaries* directory.
+
+The libraries you need to include in your project are:
+
+   netconf4android.jar (The Netconf4Android API)
+
+and
+
+   lib/ganymed-ssh2-build210/ganymed-ssh2-build210.jar (The Ganymed-SSH2 API to use the SSH-2 transport protocol)
 
 ==Step 2: Toaster Capability declaration==
 
