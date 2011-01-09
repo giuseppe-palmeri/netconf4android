@@ -2,7 +2,7 @@
 
 ==Introduction==
 
-This guide shows how to create a simple application using the Netconf4Android API.
+This guide shows how to create a simple application using the API.
 
 Our aim is to implement a simple Java application that controls a toaster through a Netconf server that has this capability:
 
