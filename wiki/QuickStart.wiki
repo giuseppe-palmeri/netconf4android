@@ -8,7 +8,7 @@ Our aim is to implement a simple Java application that controls a toaster throug
 
      http://netconfcentral.org/ns/toaster
 
-All the features that make the ability to control a toaster is described through the following YANG module:
+All the features that make the capability to control a toaster is described through the following YANG module:
 
     http://www.netconfcentral.org/modulereport/toaster
 
