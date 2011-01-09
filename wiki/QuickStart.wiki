@@ -48,4 +48,4 @@ This is an Eclipse project that you can safely explore and from which to take id
 
 ==Step 7: Make/Cancel a Toast==
 
-==Step 8: Note==
+==Step 8: Final Note==
