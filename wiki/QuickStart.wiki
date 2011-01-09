@@ -43,8 +43,6 @@ First you must download the *netconf4Android-Binaries.zip* archive of the last v
 You'll find in the archive the libraries to use.
 Unzip the archive to a location of your choice.
 
-Inside that directory you will find Netconf4Android-Binaries
-
 Please read very carefully the *_README.txt* and *_LICENSE.txt* files.
 
 You will find them into the *netconf4Android-Binaries* directory.
