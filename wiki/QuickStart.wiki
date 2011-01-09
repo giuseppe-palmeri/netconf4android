@@ -51,11 +51,11 @@ You will find them into the *netconf4Android-Binaries* directory.
 
 The libraries you need to include in your project are:
 
-   *netconf4android.jar* - The netconf4Android API
+   netconf4android.jar - The netconf4Android API
 
 and
 
-   *lib/ganymed-ssh2-build210/ganymed-ssh2-build210.jar* - The Ganymed-SSH2 API to use the SSH-2 transport protocol.
+   lib/ganymed-ssh2-build210/ganymed-ssh2-build210.jar - The Ganymed-SSH2 API to use the SSH-2 transport protocol.
 
 
 
