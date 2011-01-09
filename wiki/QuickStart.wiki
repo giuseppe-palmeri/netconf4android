@@ -34,17 +34,17 @@ A better Android (and no Java) version of our example is [http://code.google.com
 
 This is an Eclipse project that you can safely explore and from which to take ideas for your Android applications.
 
-==Step 1: Setup the development environment on Eclipse==
+==Step 1: Setup the Development Environment on Eclipse==
 
 ==Step 2: Toaster Capability declaration==
 
 ==Step 3: Enable the Log Stream==
 
-==Step 4: Connect to the server==
+==Step 4: Connect to the Server==
 
-==Step 5: Load and initialize the Toaster YANG module on the server==
+==Step 5: Load and initialize the Toaster YANG module on the Server==
 
-==Step 6: Configure the toaster==
+==Step 6: Configure the Toaster==
 
 ==Step 7: Make/Cancel a Toast==
 
