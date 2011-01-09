@@ -19,3 +19,7 @@ To learn how to install the server, please consult the appropriate documentation
     [http://www.netconfcentral.org/static/manuals/yuma-installation-guide.pdf Yuma Installation Guide]
 
     [http://www.netconfcentral.org/static/manuals/yuma-quickstart-guide.pdf Yuma Quickstart Guide]
+
+The home directory of the YUMA Tools project is:
+
+    http://www.netconfcentral.org
