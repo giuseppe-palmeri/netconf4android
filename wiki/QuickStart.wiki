@@ -1,5 +1,21 @@
 #summary One-sentence summary of this page.
 
-= Introduction =
+==Introduction==
 
-*This section is under construction.*
+This guide shows how to create a simple application using the Netconf4Android API.
+
+Our aim is to implement a simple Java application that controls a toaster through a Netconf server that has this capability:
+
+     http://netconfcentral.org/ns/toaster
+
+All the features that make the ability to control a toaster is described through the following YANG module:
+
+    http://www.netconfcentral.org/modulereport/toaster
+
+Our example, we plan to use a YUMA Server that has the ability to make this capability available in a dynamic way through the LOAD Operation.
+
+To learn how to install the server, please consult the appropriate documentation of the project and in particular, for this example, the following guides:
+
+    [http://www.netconfcentral.org/static/manuals/yuma-installation-guide.pdf Yuma Installation Guide]
+
+    [http://www.netconfcentral.org/static/manuals/yuma-quickstart-guide.pdf Yuma Quickstart Guide]
