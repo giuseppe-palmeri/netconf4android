@@ -31,6 +31,7 @@ Please note that for our example, for simplicity, the user with which you connec
 Only a super user can dynamically load a module and initialize it.
 
 A better version of our example is [http://code.google.com/p/netconf4android/downloads/detail?name=Netconf4Android.zip Android netconf Toaster].
+
 This is an Eclipse project that you can safely explore and from which to take ideas for your applications.
 
 ==Step 1: Setup the development environment==
