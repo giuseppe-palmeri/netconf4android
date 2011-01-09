@@ -29,3 +29,5 @@ Once you have familiarized yourself with the server you can easily access the ne
 Please note that for our example, for simplicity, the user with which you connect must have *superuser privileges* on the YUMA Server.
 
 Only a super user can dynamically load a module and initialize it.
+
+==Step 1: Connection to the server==
