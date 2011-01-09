@@ -10,7 +10,7 @@ Our aim is to implement a simple Java application that controls a toaster throug
 
 All the features that make the capability to control a toaster is described through the following YANG module:
 
-    http://www.netconfcentral.org/modulereport/toaster
+    [http://www.netconfcentral.org/modulereport/toaster taster.yang]
 
 Our example, we plan to use a YUMA Server that has the ability to make this capability available in a dynamic way through the LOAD Operation.
 
