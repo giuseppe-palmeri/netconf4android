@@ -30,7 +30,7 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 public class Main extends Activity
-{
+{ 
 	private static final int MENU_NEW_CONNECTION = 0;
 	private static final int MENU_INFO = 1;
 	private static final int MENU_HELP = 2;
