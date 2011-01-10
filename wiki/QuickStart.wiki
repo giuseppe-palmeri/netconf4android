@@ -56,7 +56,7 @@ and
    lib/ganymed-ssh2-build210/ganymed-ssh2-build210.jar - The Ganymed-SSH2 API to use the SSH-2 transport protocol.
 
 
-*Please, open Eclipse now and create a new project called 'Netconf Toaster':
+* Please, open Eclipse now and create a new project called 'Netconf Toaster':
 
    File -> New -> Java Project
 
@@ -66,7 +66,7 @@ and
 
    Press the OK button.
 
-*After creating the project, create the public class 'Toaster' as the entry point for the application:
+* After creating the project, create the public class 'Toaster' as the entry point for the application:
 
    File -> New -> Class
 
@@ -80,7 +80,7 @@ and
 
    Press the OK button.
 
-*At this point, you will need to add the libraries to the project to use them:
+* At this point, you will need to add the libraries to the project to use them:
 
    Project -> Properties -> Java Build Path -> Add External JARs...
 
