@@ -66,9 +66,7 @@ and
 
    Press the OK button.
 
-*After creating the project, create the public class 'Toaster' as the entry point for the application.
-
-   The path to follow is this:
+*After creating the project, create the public class 'Toaster' as the entry point for the application:
 
    File -> New -> Class
 
@@ -82,9 +80,7 @@ and
 
    Press the OK button.
 
-*At this point, you will need to add the libraries to the project to use them.
-
-   The path to follow is this:
+*At this point, you will need to add the libraries to the project to use them:
 
    Project -> Properties -> Java Build Path -> Add External JARs...
 
