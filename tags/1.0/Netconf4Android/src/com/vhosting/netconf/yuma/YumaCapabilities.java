@@ -13,12 +13,10 @@ package com.vhosting.netconf.yuma;
 public interface YumaCapabilities
 {
 	public static final YANGCapability YUMA_SYSTEM = new YANGCapability(
-			"http://netconfcentral.org/ns/yuma-system",
 			"http://netconfcentral.org/ns/yuma-system", "sys", "yuma-system",
 			"2010-05-24");
 
 	public static final YANGCapability YUMA_TYPES = new YANGCapability(
-			"http://netconfcentral.org/ns/yuma-types",
 			"http://netconfcentral.org/ns/yuma-types", "yt", "yuma-types",
 			"2010-01-25");
 
