@@ -22,31 +22,25 @@ public class YANGCapability extends Capability
 	/**
 	 * Create a capability associated with a specific YANG module.
 	 * 
-	 * @param capabilityBaseURI
-	 *            The capability base Uri or the capability Uri without
-	 *            parameters.
 	 * @param namespaceURI
-	 *            The namespace Uri for this capability.
+	 *            The namespace Uri (or the capability base Uri) for this capability.
 	 * @param prefix
 	 *            The candidate namespace prefix of the namespace Uri.
 	 * @param moduleName
 	 *            The YANG module name.
 	 */
-	public YANGCapability(String capabilityBaseURI, String namespaceURI,
+	public YANGCapability(String namespaceURI,
 			String prefix, String moduleName)
 	{
-		this(capabilityBaseURI, namespaceURI, prefix, moduleName, null);
+		this(namespaceURI, prefix, moduleName, null);
 
 	}
 
 	/**
 	 * Create a capability associated with a specific YANG module.
 	 * 
-	 * @param capabilityBaseURI
-	 *            The capability base Uri or the capability Uri without
-	 *            parameters.
 	 * @param namespaceURI
-	 *            The namespace Uri for this capability.
+	 *            The namespace Uri (or the capability base Uri) for this capability.
 	 * @param prefix
 	 *            The candidate namespace prefix of the namespace Uri.
 	 * @param moduleName
@@ -54,10 +48,10 @@ public class YANGCapability extends Capability
 	 * @param revision
 	 *            The YANG module revision date.
 	 */
-	public YANGCapability(String capabilityBaseURI, String namespaceURI,
+	public YANGCapability(String namespaceURI,
 			String prefix, String moduleName, String revision)
 	{
-		super(capabilityBaseURI, namespaceURI, prefix);
+		super(namespaceURI, namespaceURI, prefix);
 		this.moduleName = moduleName;
 		this.revision = revision;
 
