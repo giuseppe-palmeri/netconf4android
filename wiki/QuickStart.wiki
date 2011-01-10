@@ -89,7 +89,7 @@ and
    * Press the OK button.
 
 The development environment is ready now.
-|| *Step 1 - Video 1* || "Step 1 - Video 2" ||
+|| *Step 1 - Video 1* || *Step 1 - Video 2* ||
 || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=3j8M-iWeq-s"/> ||
 
 ==Step 2: Toaster Capability declaration==
