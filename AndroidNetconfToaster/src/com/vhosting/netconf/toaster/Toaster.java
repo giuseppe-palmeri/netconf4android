@@ -82,7 +82,6 @@ public class Toaster extends Activity
 			1, true);
 
 	private static YANGCapability toasterCap = new YANGCapability(
-			"http://netconfcentral.org/ns/toaster",
 			"http://netconfcentral.org/ns/toaster", "toast", "toaster");
 
 	
