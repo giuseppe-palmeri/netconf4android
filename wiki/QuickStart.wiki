@@ -64,7 +64,7 @@ and
 
       Project name: Netconf Toaster
 
-      Press the OK button.
+   * Press the OK button.
 
 * After creating the project, create the public class 'Toaster' as the entry point for the application:
 
@@ -85,6 +85,7 @@ and
    * Project -> Properties -> Java Build Path -> Add External JARs...
 
    * Select the location of the netconf4android.jar library and repeat the action for the ganymed-ssh2-build210.jar library.
+
    * Press the OK button.
 
 The development environment is ready now.
