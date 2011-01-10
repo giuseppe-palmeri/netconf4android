@@ -82,10 +82,9 @@ and
 
 * At this point, you will need to add the libraries to the project to use them:
 
-   Project -> Properties -> Java Build Path -> Add External JARs...
+   * Project -> Properties -> Java Build Path -> Add External JARs...
 
-   Select the location of the netconf4android.jar library and repeat the action
-   for the ganymed-ssh2-build210.jar library.
+   * Select the location of the netconf4android.jar library and repeat the action for the ganymed-ssh2-build210.jar library.
 
 At this point, the development environment is ready.
 
