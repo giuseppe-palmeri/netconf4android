@@ -58,35 +58,36 @@ and
 
 * Please, open Eclipse now and create a new project called 'Netconf Toaster':
 
-   File -> New -> Java Project
+   * File -> New -> Java Project
 
-   Insert this values into the form:
+   * Insert this values into the form:
 
-   Project name: Netconf Toaster
+      Project name: Netconf Toaster
 
-   Press the OK button.
+      Press the OK button.
 
 * After creating the project, create the public class 'Toaster' as the entry point for the application:
 
-   File -> New -> Class
+   * File -> New -> Class
 
-   Insert this values into the form:
+   * Insert this values into the form:
 
-   Package: com.vhosting.netconf.example (or a package of your choice)
+      Package: com.vhosting.netconf.example (or a package of your choice)
 
-   Nane: Toaster
+      Nane: Toaster
 
-   Add the public static void main method.
+      Add the public static void main method.
 
-   Press the OK button.
+   * Press the OK button.
 
 * At this point, you will need to add the libraries to the project to use them:
 
    * Project -> Properties -> Java Build Path -> Add External JARs...
 
    * Select the location of the netconf4android.jar library and repeat the action for the ganymed-ssh2-build210.jar library.
+   * Press the OK button.
 
-At this point, the development environment is ready.
+The development environment is ready now.
 
 
 ==Step 2: Toaster Capability declaration==
