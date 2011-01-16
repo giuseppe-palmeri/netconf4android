@@ -137,3 +137,6 @@ The development environment is ready now.
 || <wiki:video url="http://www.youtube.com/watch?v=ye67QLCsFMQ"/> ||
 
 ==Step 10: Final Note==
+
+
+Copyright (c) 2010 Giuseppe Palmeri
