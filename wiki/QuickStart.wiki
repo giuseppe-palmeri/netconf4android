@@ -87,53 +87,53 @@ The libraries you need to include in your project are:
 
 The development environment is ready now.
 || *Step 1 - Video 1* || *Step 1 - Video 2* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=3j8M-iWeq-s"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=8uTzylpXzmk"/> || <wiki:video url="http://www.youtube.com/watch?v=igCGVY5lNPM"/> ||
 
 ==Step 2: Toaster Capability declaration==
 
 || *Step 2 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=atnvbsQi8B0"/> ||
 
 
 ==Step 3: Connect to the Server==
 
 || *Step 3 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=GSgx2RCAZbg"/> ||
 
 
 ==Step 4: Enable the Log Stream==
 
 || *Step 4 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=5nHzhnGru0A"/> ||
 
 
 ==Step 5: Transport Events==
 
 || *Step 5 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=RyOJXW26vkU"/> ||
 
 
 ==Step 6: Program Flow==
 
 || *Step 6 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=yELzp1iFOEE"/> ||
 
 
 ==Step 7: Load the Toaster YANG Module and Initialize It==
 
 || *Step 7 - Video 1* || *Step 7 - Video 2* || *Step 7 - Video 3* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=9EGwSlzO5U0"/> || <wiki:video url="http://www.youtube.com/watch?v=W7us9IcMrMQ"/> || <wiki:video url="http://www.youtube.com/watch?v=Cs0cROQITyQ"/> ||
 
 
 ==Step 8: Enable Notifications==
 
 || *Step 8 - Video 1* || *Step 8 - Video 2* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=1IXcrtceTXc"/> || <wiki:video url="http://www.youtube.com/watch?v=8FYfXPNI79Y"/> ||
 
 
 ==Step 9: Make Toasts==
 
 || *Step 9 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=ye67QLCsFMQ"/> ||
 
 ==Step 10: Final Note==
