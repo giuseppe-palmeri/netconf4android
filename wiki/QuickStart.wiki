@@ -122,7 +122,7 @@ The development environment is ready now.
 ==Step 7: Load the Toaster YANG Module and Initialize It==
 
 || *Step 7 - Video 1* || *Step 7 - Video 2* || *Step 7 - Video 3* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
 
 
 ==Step 8: Enable Notifications==
@@ -137,5 +137,3 @@ The development environment is ready now.
 || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
 
 ==Step 10: Final Note==
-
-
