@@ -91,14 +91,51 @@ The development environment is ready now.
 
 ==Step 2: Toaster Capability declaration==
 
-==Step 3: Enable the Log Stream==
+|| *Step 2 - Video 1* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
 
-==Step 4: Connect to the Server==
 
-==Step 5: Load and initialize the Toaster YANG module on the Server==
+==Step 3: Connect to the Server==
 
-==Step 6: Configure the Toaster==
+|| *Step 3 - Video 1* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
 
-==Step 7: Make/Cancel a Toast==
 
-==Step 8: Final Note==
+==Step 4: Enable the Log Stream==
+
+|| *Step 4 - Video 1* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+
+
+==Step 5: Transport Events==
+
+|| *Step 5 - Video 1* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+
+
+==Step 6: Program Flow==
+
+|| *Step 6 - Video 1* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+
+
+==Step 7: Load the Toaster YANG Module and Initialize It==
+
+|| *Step 7 - Video 1* || *Step 7 - Video 2* || *Step 7 - Video 3* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+
+
+==Step 8: Enable Notifications==
+
+|| *Step 8 - Video 1* || *Step 8 - Video 2* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> || <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+
+
+==Step 9: Make Toasts==
+
+|| *Step 9 - Video 1* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=l1WrkSJ58LU"/> ||
+
+==Step 10: Final Note==
+
+
