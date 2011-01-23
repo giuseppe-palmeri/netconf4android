@@ -249,16 +249,10 @@ In our example we want to monitor all activity that affects both the protocol th
 
 package com.vhosting.netconf.example;
 
-import java.net.InetSocketAddress;
-
-import com.vhosting.netconf.frame.RpcHandler;
+...
 import com.vhosting.netconf.transport.NetconfCatcher;
 import com.vhosting.netconf.transport.NetconfCatcher.LogLevel;
-import com.vhosting.netconf.transport.NetconfCatcherListener;
-import com.vhosting.netconf.transport.NetconfTransportEvent;
-import com.vhosting.netconf.transport.ssh.NetconfSshCather;
-import com.vhosting.netconf.transport.ssh.SshAuthInfo;
-import com.vhosting.netconf.yuma.YANGCapability;
+...
 
 public class Toaster {
 	
