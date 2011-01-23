@@ -384,6 +384,8 @@ public class Toaster {
 
 
 ==Step 6: Program Flow==
+Now that all the elements necessary to manage the connection has been handled, we want to define the flow of our program.
+That is actions that allow us to initialize the toaster if does not exist on the server, make toast and exit the program.
 
 {{{
 
