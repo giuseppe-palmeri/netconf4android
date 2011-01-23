@@ -252,6 +252,8 @@ package com.vhosting.netconf.example;
 import java.net.InetSocketAddress;
 
 import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.transport.NetconfCatcher;
+import com.vhosting.netconf.transport.NetconfCatcher.LogLevel;
 import com.vhosting.netconf.transport.NetconfCatcherListener;
 import com.vhosting.netconf.transport.NetconfTransportEvent;
 import com.vhosting.netconf.transport.ssh.NetconfSshCather;
