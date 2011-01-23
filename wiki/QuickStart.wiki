@@ -385,6 +385,129 @@ public class Toaster {
 
 ==Step 6: Program Flow==
 
+{{{
+
+package com.vhosting.netconf.example;
+
+...
+import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.transport.NetconfCatcherListener;
+import com.vhosting.netconf.transport.ssh.NetconfSshCather;
+...
+
+public class Toaster {
+
+	...
+        // The Netconf SSH-2 as attribute.
+	private static NetconfSshCather catcher;
+        ...
+	
+	/**
+	 * Toaster Entry Point.
+	 */
+	public static void main(String[] args) {
+
+		...
+		
+		// Set the Netconf Catcher Listener.
+		// Note: This is the entry point for Netconf operations.
+		catcher.setNetconfCatcherListener(new NetconfCatcherListener() {
+			
+			
+			// Transport events here.
+			@Override
+			public void processTransportEvents(NetconfTransportEvent event) {
+				
+				...
+				
+			}
+			
+			// RPC requests here.
+			@Override
+			public void processReadyForRpcRequests(RpcHandler handler) {
+				
+				try
+				{
+					// Upload your toaster if it does not 
+					// exist on the server and quit if you can not load the toaster.
+					if (loadToaster(handler))
+					{
+						// If the toaster is available, it makes toast 
+						// until the user decides to quit.
+						if (!makeToasts(handler))
+						{
+							disconnectAndExit();
+						}
+					}
+					else disconnectAndExit();
+				}
+				catch(Exception e)
+				{
+					// Intercept all exceptions That May Occur 
+					// while messages are sent and received.
+					
+					System.out.println("There is a problem in sending or receiving messages.");
+					System.out.println("This is the exception {");
+					
+					e.printStackTrace();
+					
+					System.out.println("}");
+				}
+			}
+		});
+		
+		
+		...
+		
+	}
+
+
+	
+	
+	/*
+	 * It makes toast until the user decides to quit.
+	 */
+	protected static boolean makeToasts(RpcHandler handler) {
+		// ...
+		return false;
+	}
+
+
+
+
+    /*
+     * Upload your toaster if it does not exist on the server 
+     * and quit if you can not load the toaster.
+     */
+	protected static boolean loadToaster(RpcHandler handler) {
+		// ...
+		return false;
+	}
+
+	
+	
+	
+	
+	
+
+	/*
+	 * Disconnect and exit.
+	 */
+	protected static void disconnectAndExit() {
+		
+		// Disconnect.
+		catcher.disconnect();
+		
+		// Exit.
+		System.exit(0);
+		
+	}
+
+}
+
+}}}
+
+
 || *Step 6 - Video 1* ||
 || <wiki:video url="http://www.youtube.com/watch?v=yELzp1iFOEE"/> ||
 
