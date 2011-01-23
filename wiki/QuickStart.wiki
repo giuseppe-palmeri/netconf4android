@@ -393,6 +393,7 @@ package com.vhosting.netconf.example;
 import com.vhosting.netconf.frame.RpcHandler;
 import com.vhosting.netconf.transport.NetconfCatcherListener;
 import com.vhosting.netconf.transport.ssh.NetconfSshCather;
+import com.vhosting.netconf.transport.NetconfTransportEvent;
 ...
 
 public class Toaster {
@@ -461,9 +462,6 @@ public class Toaster {
 		
 	}
 
-
-	
-	
 	/*
 	 * It makes toast until the user decides to quit.
 	 */
@@ -472,23 +470,14 @@ public class Toaster {
 		return false;
 	}
 
-
-
-
-    /*
-     * Upload your toaster if it does not exist on the server 
-     * and quit if you can not load the toaster.
-     */
+        /*
+         * Upload your toaster if it does not exist on the server 
+         * and quit if you can not load the toaster.
+         */
 	protected static boolean loadToaster(RpcHandler handler) {
 		// ...
 		return false;
 	}
-
-	
-	
-	
-	
-	
 
 	/*
 	 * Disconnect and exit.
