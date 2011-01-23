@@ -99,7 +99,7 @@ Data that are retrieved from the Toaster YANG module:
 
 || *Step 2 - Video 1* || Step 2 - Source Code ||
 || <wiki:video url="http://www.youtube.com/watch?v=atnvbsQi8B0"/> ||
-{{{ 
+`
 package com.vhosting.netconf.example;
 
 import com.vhosting.netconf.yuma.YANGCapability;
@@ -135,9 +135,8 @@ public class Toaster {
 
 	}
 
-}
-
-}}}||
+}`
+||
 
 ==Step 3: Connect to the Server==
 
