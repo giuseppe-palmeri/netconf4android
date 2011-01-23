@@ -140,6 +140,101 @@ public class Toaster {
 || <wiki:video url="http://www.youtube.com/watch?v=atnvbsQi8B0"/> ||
 
 ==Step 3: Connect to the Server==
+After declaring the Toaster Capability, as essential, we set the SSH-2 connection to the NETCONF server.
+{{{
+
+package com.vhosting.netconf.example;
+
+import java.net.InetSocketAddress;
+
+import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.transport.NetconfCatcherListener;
+import com.vhosting.netconf.transport.NetconfTransportEvent;
+import com.vhosting.netconf.transport.ssh.NetconfSshCather;
+import com.vhosting.netconf.transport.ssh.SshAuthInfo;
+import com.vhosting.netconf.yuma.YANGCapability;
+
+public class Toaster {
+
+	
+	
+	/*
+	 * These data were obtained by consulting the YANG module: 
+	 * 
+	 *     toaster.yang
+	 *
+	 * A copy of the YANG module can be found at URL:
+	 *
+	 *     http://www.netconfcentral.org/modulereport/toaster
+	 *
+	 */
+	private YANGCapability toasterCap = 
+		new YANGCapability("http://netconfcentral.org/ns/toaster", 
+				"http://netconfcentral.org/ns/toaster", 
+				"toast", "toaster");
+	
+	
+	// SSH-2 Connection parameters
+	
+	// The Netconf server host. Note: The dafault port is 830.
+	private static InetSocketAddress host = 
+		new InetSocketAddress("vhosting.eu.org", 22);
+	
+	// The user name.
+	private static String uname = "netconf";
+	
+	// The password.
+	private static String passwd = "pippo";
+	
+	// The SSH-2 Netconf Sybsystem.
+	private static String subsystem = "netconf";
+	
+	
+	/**
+	 * Toaster Entry Point.
+	 */
+	public static void main(String[] args) {
+
+		// Authentication Info.
+		SshAuthInfo ai = new SshAuthInfo(host, uname, passwd);
+		
+		// The Netconf Catcher instance.
+		NetconfSshCather catcher = 
+			new NetconfSshCather("My Toaster Example", ai, subsystem);
+		
+		// The connection.
+		Runnable runnableConnection = catcher.getRunnableConnection();
+		
+		// Set the Netconf Catcher Listener.
+		// Note: This is the entry point for Netconf operations.
+		catcher.setNetconfCatcherListener(new NetconfCatcherListener() {
+			
+			
+			// Transport events here.
+			@Override
+			public void processTransportEvents(NetconfTransportEvent arg0) {
+				// ...
+				
+			}
+			
+			// RPC requests here.
+			@Override
+			public void processReadyForRpcRequests(RpcHandler arg0) {
+				// ...
+				
+			}
+		});
+		
+		
+		// Start the connection here.
+		Thread t = new Thread(runnableConnection);
+		t.start();
+		
+	}
+
+}
+
+}}}
 
 || *Step 3 - Video 1* ||
 || <wiki:video url="http://www.youtube.com/watch?v=GSgx2RCAZbg"/> ||
