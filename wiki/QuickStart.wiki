@@ -91,9 +91,52 @@ The development environment is ready now.
 
 ==Step 2: Toaster Capability declaration==
 
-|| *Step 2 - Video 1* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=atnvbsQi8B0"/> ||
+The first step for our example is the definition of Toaster Capability to be used internally to the code.
 
+Data that are retrieved from the Toaster YANG module:
+
+ [http://www.netconfcentral.org/modulereport/toaster toaster.yang]
+
+|| *Step 2 - Video 1* || Step 2 - Source Code ||
+|| <wiki:video url="http://www.youtube.com/watch?v=atnvbsQi8B0"/> ||
+{{{ 
+package com.vhosting.netconf.example;
+
+import com.vhosting.netconf.yuma.YANGCapability;
+
+public class Toaster {
+
+	
+	
+	/*
+	 * These data were obtained by consulting the YANG module: 
+	 * 
+	 *     toaster.yang
+	 *
+	 * A copy of the YANG module can be found at URL:
+	 *
+	 *     http://www.netconfcentral.org/modulereport/toaster
+	 *
+	 */
+	private YANGCapability toasterCap = 
+		new YANGCapability("http://netconfcentral.org/ns/toaster", 
+				"http://netconfcentral.org/ns/toaster", 
+				"toast", "toaster");
+	
+	
+	// Connection parameters
+	// ...
+	
+	
+	/**
+	 * Toaster Entry Point.
+	 */
+	public static void main(String[] args) {
+
+	}
+
+}
+}}}||
 
 ==Step 3: Connect to the Server==
 
