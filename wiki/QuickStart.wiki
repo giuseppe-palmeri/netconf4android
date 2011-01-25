@@ -760,6 +760,135 @@ public class Toaster {
 
 ==Step 8: Enable Notifications==
 
+{{{
+
+
+
+package com.vhosting.netconf.example;
+
+...
+import com.vhosting.netconf.CapabilityException;
+import com.vhosting.netconf.CreateSubscription;
+import com.vhosting.netconf.frame.Leaf;
+import com.vhosting.netconf.frame.Notification;
+import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.frame.RpcReply;
+import com.vhosting.netconf.notification.NotificationEvent;
+import com.vhosting.netconf.notification.NotificationsListener;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+...
+
+
+public class Toaster {
+
+	...
+
+
+	// A blocking queue.
+	// This is useful for synchronize the 'toastDone' 
+	// notification when you make toasts.
+	
+	// NOTE: The toaster is designed for accept only a request at a time.
+	
+	private static final BlockingQueue<Boolean> 
+			queue = new ArrayBlockingQueue<Boolean>(1000);
+	
+	
+	static /*
+	 * The Notifications Listener.
+	 */
+	NotificationsListener nl = new NotificationsListener()
+	{
+
+		// Process a notification.
+		@Override
+		public void processNotification(NotificationEvent event) {
+			
+			// Create a Notification structure named 'toastDone' 
+			// for the toaster YANG module.
+			// Through this structure, you can load the data 
+			// from the notification event, if available.
+			Notification n = new Notification(toasterCap, "toastDone");
+			Leaf toastStatus = 
+				n.getNotification().linkLeaf(n.createLeaf("toastStatus"));
+			event.load(n);
+			
+			
+			
+			// Get the status of the 'toastDone' notification.
+			String status = n.getNotification().getLeafCanonicalValue(toastStatus);
+			
+			
+			// If status exists, it is certain that 
+			// the 'toastDone' notification is present. 
+			if (status != null)
+			{
+				// Done.
+				if (status.equals("done"))
+				{
+					System.out.println("The toast is done!");
+				}
+				// Cancelled.
+				else if (status.equals("cancelled"))
+				{
+					System.out.println("The toast is cancelled!");
+				}
+				// Error.
+				else if (status.equals("error"))
+				{
+					System.out.println("There was an error, the unit can be broken!");
+				}
+				
+				
+				// Announced that a notification is already present.
+				queue.add(true);
+				
+			}
+			
+		}
+		
+	};
+	
+	
+	/*
+	 * It makes toast until the user decides to quit.
+	 */
+	protected static boolean makeToasts(RpcHandler handler) throws CapabilityException, IOException {
+		
+		// Set the Notification Listener.
+		handler.setNotificationsListener(nl);
+		
+		
+		System.out.println("Start the notifications system...");
+		
+		// Enable notifications system through a CREATE-SUBSCRIPTION operation.
+		// In this way, the server can let us know when our toast is ready.
+		CreateSubscription subscription = 
+			new CreateSubscription(handler.getSession());
+		
+		RpcReply reply = subscription.executeSync(handler);
+		
+		// Check if there were any errors.
+		if (reply.containsErrors())
+		{
+			System.out.println("Unable to start the notifications system.");
+			return false;
+		}
+		
+		System.out.println("The Notifications system is started.");
+
+		// ...
+		
+		return false;
+	}
+
+
+}
+
+}}}
+
+
 || *Step 8 - Video 1* || *Step 8 - Video 2* ||
 || <wiki:video url="http://www.youtube.com/watch?v=1IXcrtceTXc"/> || <wiki:video url="http://www.youtube.com/watch?v=8FYfXPNI79Y"/> ||
 
