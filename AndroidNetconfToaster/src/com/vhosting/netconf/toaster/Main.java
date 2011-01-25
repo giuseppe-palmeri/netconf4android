@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,7 +16,6 @@ import android.content.SharedPreferences.Editor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,7 +27,6 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
 public class Main extends Activity
 { 
@@ -38,8 +37,7 @@ public class Main extends Activity
 	private static final int MENU_LICENSE = 4;
 	private static final int CONNECTION_RESULT = 1;
 	private static final int TOASTER_RESULT = 2;
-	private ViewSwitcher flipper;
-	private MatrixCursor mCursor;
+	private MatrixCursor cursor;
 	private SimpleCursorAdapter adapter;
 	private SharedPreferences pref;
 	private TextView message;
@@ -55,13 +53,6 @@ public class Main extends Activity
 
 		pref = getSharedPreferences("__main", Context.MODE_PRIVATE);
 
-		flipper = (ViewSwitcher) this.findViewById(R.id.flipper);
-
-		LayoutInflater li = this.getLayoutInflater();
-		View v = li.inflate(R.layout.toaster, null);
-
-		flipper.addView(v);
-
 		lv = (ListView) findViewById(android.R.id.list);
 
 		message = (TextView) this.findViewById(R.id.message);
@@ -74,29 +65,26 @@ public class Main extends Activity
 
 	private void populate() {
 
-		mCursor = new MyCursor(new String[] { "_id", "label", "host", "proxy" });
+		cursor = new MyCursor(new String[] { "_id", "label", "host", "proxy" });
 
-		adapter = new SimpleCursorAdapter(this, // Context.
+		adapter = new SimpleCursorAdapter(this,
 				R.layout.main_row,
-				// Specify the row template to use (here, two columns bound to
-				// the two retrieved cursor rows).
-				mCursor, // Pass in the cursor to bind to.
-				new String[] { "label", "host", "proxy" }, // Array of cursor
-															// columns to
-				// bind to.
+				// Specify the row template to use.
+				cursor, // Pass in the cursor to bind to.
+				new String[] { "label", "host", "proxy" }, // Array of cursor columns to bind to.
 				new int[] { R.id.text1, R.id.text2, R.id.text3 })
 		{
 			@Override
 			public View getView(final int position, View convertView,
 					ViewGroup parent) {
-				// TODO Auto-generated method stub
+
 				View v = super.getView(position, convertView, parent);
 				ImageButton b = (ImageButton) v.findViewById(R.id.imageButton);
 
 				b.setOnClickListener(new OnClickListener()
 				{
 					public void onClick(View v) {
-						int id = ((MyCursor) mCursor).getId(position);
+						int id = ((MyCursor) cursor).getId(position);
 						System.out.println(v);
 						goToToasterMachine(id);
 					}
@@ -105,7 +93,7 @@ public class Main extends Activity
 				{
 
 					public boolean onLongClick(View v) {
-						int id = ((MyCursor) mCursor).getId(position);
+						int id = ((MyCursor) cursor).getId(position);
 						showEditActions(id);
 						return true;
 					}
@@ -137,7 +125,7 @@ public class Main extends Activity
 				boolean exists = false;
 				if (!exists)
 				{
-					mCursor.addRow(new Object[] {
+					cursor.addRow(new Object[] {
 							c,
 
 							p.getString("label", ""),
@@ -156,7 +144,7 @@ public class Main extends Activity
 
 		adapter.notifyDataSetChanged();
 
-		if (mCursor.getCount() == 0)
+		if (cursor.getCount() == 0)
 			message.setVisibility(View.VISIBLE);
 		else
 			message.setVisibility(View.GONE);
