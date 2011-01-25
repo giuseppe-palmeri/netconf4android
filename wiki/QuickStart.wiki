@@ -551,17 +551,17 @@ public class Toaster {
 		// Exec the operation.
 		/*
 		 * The message will be sent is:
-         *
-         * <?xml version="1.0" encoding="UTF-8"?>
-         *   <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
-         *                     nc:message-id="1">
-         *    <nc:get>
-         *      <nc:filter nc:type="subtree">
-         *         <toast:toaster 
-         *              xmlns:toast="http://netconfcentral.org/ns/toaster"/>
-         *      </nc:filter>
-         *    </nc:get>
-         *   </nc:rpc>
+                 *
+                 * <?xml version="1.0" encoding="UTF-8"?>
+                 *   <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
+                 *                     nc:message-id="1">
+                 *    <nc:get>
+                 *      <nc:filter nc:type="subtree">
+                 *         <toast:toaster 
+                 *              xmlns:toast="http://netconfcentral.org/ns/toaster"/>
+                 *      </nc:filter>
+                 *    </nc:get>
+                 *   </nc:rpc>
 		 */
 		RpcReply reply = g.executeSync(handler);
 		
@@ -579,22 +579,22 @@ public class Toaster {
 		/*
 		 * The XML document should contain something like this if there:
    
-         *   <?xml version="1.0" encoding="UTF-8"?>
-         *   <nc:data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
-         *     <toast:toaster xmlns:toast="http://netconfcentral.org/ns/toaster">
-         *       <toast:toasterManufacturer>Acme, Inc.</toast:toasterManufacturer>
-         *       <toast:toasterModelNumber>Super Toastamatic 2000</toast:toasterModelNumber>
-         *       <toast:toasterStatus>up</toast:toasterStatus>
-         *     </toast:toaster>
-         *   </nc:data>
-         *   
-         *   otherwise, it contains a blank document:
-         *
-         *    <?xml version="1.0" encoding="UTF-8"?>
-         *    <nc:data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
-         *    </nc:data>
-         *   
-         *   
+                 *   <?xml version="1.0" encoding="UTF-8"?>
+                 *   <nc:data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+                 *     <toast:toaster xmlns:toast="http://netconfcentral.org/ns/toaster">
+                 *       <toast:toasterManufacturer>Acme, Inc.</toast:toasterManufacturer>
+                 *       <toast:toasterModelNumber>Super Toastamatic 2000</toast:toasterModelNumber>
+                 *       <toast:toasterStatus>up</toast:toasterStatus>
+                 *     </toast:toaster>
+                 *   </nc:data>
+                 *   
+                 *   otherwise, it contains a blank document:
+                 *
+                 *    <?xml version="1.0" encoding="UTF-8"?>
+                 *    <nc:data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+                 *    </nc:data>
+                 *   
+                 *   
 		 */
 		Document doc = gr.getData();
 		
@@ -660,20 +660,20 @@ public class Toaster {
 			/*
 			 * The message being sent is like this:
 
-             *   <?xml version="1.0" encoding="UTF-8"?>
-             *   <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
+                         *   <?xml version="1.0" encoding="UTF-8"?>
+                         *   <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
                                   nc:message-id="4">
-             *      <nc:edit-config>
-             *        <nc:target>
-             *         <nc:candidate/>
-             *        </nc:target>
-             *        <nc:config>
-             *          <toast:toaster 
-             *               nc:operation="create" 
-             *               xmlns:toast="http://netconfcentral.org/ns/toaster"/>
-             *        </nc:config>
-             *      </nc:edit-config>
-             *   </nc:rpc>
+                         *      <nc:edit-config>
+                         *        <nc:target>
+                         *         <nc:candidate/>
+                         *        </nc:target>
+                         *        <nc:config>
+                         *          <toast:toaster 
+                         *               nc:operation="create" 
+                         *               xmlns:toast="http://netconfcentral.org/ns/toaster"/>
+                         *        </nc:config>
+                         *      </nc:edit-config>
+                         *   </nc:rpc>
 			 */
 			reply = ec.executeSync(handler);
 			
