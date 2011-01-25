@@ -1127,9 +1127,7 @@ public class Toaster {
 
 The source code of our example can be downloaded [http://code.google.com/p/netconf4android/downloads/list here].
 
-Note: This archive contains only the source of the example.
-
-
+Note: This archive contains only the source code of this example.
 
 
 For any questions on our example is that on this project, please feel free to contact me at:
