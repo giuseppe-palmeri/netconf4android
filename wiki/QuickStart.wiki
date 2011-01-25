@@ -767,6 +767,7 @@ public class Toaster {
 package com.vhosting.netconf.example;
 
 ...
+import java.io.IOException;
 import com.vhosting.netconf.CapabilityException;
 import com.vhosting.netconf.CreateSubscription;
 import com.vhosting.netconf.frame.Leaf;
@@ -894,6 +895,222 @@ public class Toaster {
 
 
 ==Step 9: Make Toasts==
+
+{{{
+
+package com.vhosting.netconf.example;
+
+...
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import com.vhosting.netconf.CapabilityException;
+import com.vhosting.netconf.CreateSubscription;
+import com.vhosting.netconf.frame.Leaf;
+import com.vhosting.netconf.frame.Notification;
+import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.frame.RpcReply;
+import com.vhosting.netconf.frame.Rpc;
+import com.vhosting.netconf.notification.NotificationEvent;
+import com.vhosting.netconf.notification.NotificationsListener;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import com.vhosting.netconf.frame.Identity;
+...
+
+
+public class Toaster {
+
+	...
+
+
+	// A blocking queue.
+	// This is useful for synchronize the 'toastDone' 
+	// notification when you make toasts.
+	
+	// NOTE: The toaster is designed for accept only a request at a time.
+	
+	private static final BlockingQueue<Boolean> 
+			queue = new ArrayBlockingQueue<Boolean>(1000);
+	
+	
+	static /*
+	 * The Notifications Listener.
+	 */
+	NotificationsListener nl = new NotificationsListener()
+	{
+
+		// Process a notification.
+		@Override
+		public void processNotification(NotificationEvent event) {
+			
+			// Create a Notification structure named 'toastDone' 
+			// for the toaster YANG module.
+			// Through this structure, you can load the data 
+			// from the notification event, if available.
+			Notification n = new Notification(toasterCap, "toastDone");
+			Leaf toastStatus = 
+				n.getNotification().linkLeaf(n.createLeaf("toastStatus"));
+			event.load(n);
+			
+			
+			
+			// Get the status of the 'toastDone' notification.
+			String status = n.getNotification().getLeafCanonicalValue(toastStatus);
+			
+			
+			// If status exists, it is certain that 
+			// the 'toastDone' notification is present. 
+			if (status != null)
+			{
+				// Done.
+				if (status.equals("done"))
+				{
+					System.out.println("The toast is done!");
+				}
+				// Cancelled.
+				else if (status.equals("cancelled"))
+				{
+					System.out.println("The toast is cancelled!");
+				}
+				// Error.
+				else if (status.equals("error"))
+				{
+					System.out.println("There was an error, the unit can be broken!");
+				}
+				
+				
+				// Announced that a notification is already present.
+				queue.add(true);
+				
+			}
+			
+		}
+		
+	};
+	
+	
+	/*
+	 * It makes toast until the user decides to quit.
+	 */
+	protected static boolean makeToasts(RpcHandler handler) throws CapabilityException, IOException {
+		
+		// Set the Notification Listener.
+		handler.setNotificationsListener(nl);
+		
+		
+		System.out.println("Start the notifications system...");
+		
+		// Enable notifications system through a CREATE-SUBSCRIPTION operation.
+		// In this way, the server can let us know when our toast is ready.
+		CreateSubscription subscription = 
+			new CreateSubscription(handler.getSession());
+		
+		RpcReply reply = subscription.executeSync(handler);
+		
+		// Check if there were any errors.
+		if (reply.containsErrors())
+		{
+			System.out.println("Unable to start the notifications system.");
+			return false;
+		}
+		
+		System.out.println("The Notifications system is started.");
+
+		// Useful to intercept the user's commands.
+		BufferedReader reader = 
+			new BufferedReader(new InputStreamReader(System.in));
+		
+		
+		// Constructs which is useful to ask the server to make toast.
+		
+		// This is the 'MAKE-TOAST' RPC operation of the toaster YANG module.
+		Rpc rpc = new Rpc(toasterCap, "make-toast");
+		Leaf toasterDoneness = 
+			rpc.getInput().linkLeaf(rpc.createLeaf("toasterDoneness"));
+		Leaf toasterToastType = 
+			rpc.getInput().linkLeaf(rpc.createLeaf("toasterToastType"));
+		
+		// List of materials with which you can make a toast.
+		// These identities are as described in the toaster YANG module.
+		Identity whiteBread = new Identity(toasterCap, "white-bread");
+		Identity wheatBread = new Identity(toasterCap, "wheat-bread");
+		Identity wonderBread = new Identity(toasterCap, "wonder-bread");
+		Identity frozenWaffle = new Identity(toasterCap, "frozen-waffle");
+		Identity frozenBagel = new Identity(toasterCap, "frozen-bagel");
+		Identity hashBrown = new Identity(toasterCap, "hash-brown");
+		
+		
+		// Collects identities in an array.
+		Identity[] types = new Identity[] { whiteBread, wheatBread, wonderBread,
+				frozenWaffle, frozenBagel, hashBrown };
+		
+		// Doneness level set at 5 for this example.
+		int doneness = 5;
+		
+		// Type of material set for the toast to Bheat Bread for this example.
+		// Note: This is an index on the Identity[] array.
+		int toasterToastTypeIdx = 1;
+		
+		
+		// Assign the arguments 'toasterDoneness' and 'toasterToastType' 
+		// for the RPC operation.
+		rpc.getInput().assignLeaf(toasterDoneness, doneness + "");
+		rpc.getInput().assignLeaf(toasterToastType, 
+				types[toasterToastTypeIdx].getUniqueNane());
+		
+		// Enter into an infinite loop asking the user to 
+		// make a toast or exit the program.
+		while (true)
+		{
+			
+			System.out.println("Please make your choice (m - Make a toast; q - Quit): ");
+			
+			String line = reader.readLine();
+			
+			// The user requests to exit the program.
+			if (line.equals("q"))
+			{
+				System.out.println("Bye!");
+				return false;
+			}
+			// The user requests to make a toast.
+			else if (line.equals("m"))
+			{
+				// Make the toast.
+				handler.sendSyncRpc(rpc);
+				
+				
+				System.out.println("You have requested a toast with "
+						+ types[toasterToastTypeIdx].getName() 
+						+ " and a doneness of level "
+						+ doneness + ".");
+				
+				System.out.println("Please wait the notification... :)");
+
+				
+				// Waits for the 'toastDone' notification.
+				try
+				{
+					queue.take();
+				}
+				catch(Exception e)
+				{
+					// Nothing.
+				}
+				
+			}
+			
+		}
+		
+	}
+
+
+}
+
+
+}}}
+
 
 || *Step 9 - Video 1* ||
 || <wiki:video url="http://www.youtube.com/watch?v=ye67QLCsFMQ"/> ||
