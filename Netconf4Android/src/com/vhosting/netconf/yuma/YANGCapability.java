@@ -41,19 +41,6 @@ public class YANGCapability extends Capability
 	}
 
 	
-	/**
-	 * Create a capability associated with a specific YANG module.
-	 * @param namespaceURI
-	 *            The namespace Uri (or the capability base Uri) for this capability.
-	 * @param prefix
-	 *            The candidate namespace prefix of the namespace Uri.
-	 * @param moduleName
-	 *            The YANG module name.
-	 */
-	public YANGCapability(String namespaceURI, String prefix, String moduleName)
-	{
-		this(namespaceURI, namespaceURI, prefix, moduleName, null);
-	}
 
 	
 	/**
