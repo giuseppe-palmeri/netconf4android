@@ -505,6 +505,255 @@ public class Toaster {
 
 ==Step 7: Load the Toaster YANG Module and Initialize It==
 
+{{{
+
+
+
+package com.vhosting.netconf.example;
+
+...
+import java.io.IOException;
+import org.w3c.dom.Document;
+import com.vhosting.netconf.Commit;
+import com.vhosting.netconf.Config;
+import com.vhosting.netconf.Datastore;
+import com.vhosting.netconf.EditConfig;
+import com.vhosting.netconf.Get;
+import com.vhosting.netconf.Lock;
+import com.vhosting.netconf.SubtreeFilter;
+import com.vhosting.netconf.Unlock;
+import com.vhosting.netconf.Get.GetReply;
+import com.vhosting.netconf.frame.Data;
+import com.vhosting.netconf.frame.Leaf;
+import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.frame.RpcReply;
+import com.vhosting.netconf.yuma.Load;
+...
+
+public class Toaster {
+	
+    ...
+
+
+    /*
+     * Upload your toaster if it does not exist on the server 
+     * and quit if you can not load the toaster.
+     */
+	protected static boolean loadToaster(RpcHandler handler) throws IOException, CapabilityException {
+		
+		// Constructs a GET operation to see if there 
+		// is already an instance of the toaster on the server.
+		Get g = new Get(handler.getSession());
+		SubtreeFilter sf = g.createSubtreeFilter();
+		sf.addFilter(toasterCap).addFilterString("toaster");
+		g.setSubtreeFilter(sf);
+		
+		// Exec the operation.
+		/*
+		 * The message will be sent is:
+         *
+         * <?xml version="1.0" encoding="UTF-8"?>
+         *   <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
+         *                     nc:message-id="1">
+         *    <nc:get>
+         *      <nc:filter nc:type="subtree">
+         *         <toast:toaster 
+         *              xmlns:toast="http://netconfcentral.org/ns/toaster"/>
+         *      </nc:filter>
+         *    </nc:get>
+         *   </nc:rpc>
+		 */
+		RpcReply reply = g.executeSync(handler);
+		
+		// Check if the server has encountered errors when requesting information.
+		if (reply.containsErrors())
+		{
+			System.out.println("Unable to check the existence of the toaster.");
+			return false;
+		}
+		
+		
+		// Get the information required by the GET operation.
+		GetReply gr = g.new GetReply(reply);
+		
+		/*
+		 * The XML document should contain something like this if there:
+   
+         *   <?xml version="1.0" encoding="UTF-8"?>
+         *   <nc:data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+         *     <toast:toaster xmlns:toast="http://netconfcentral.org/ns/toaster">
+         *       <toast:toasterManufacturer>Acme, Inc.</toast:toasterManufacturer>
+         *       <toast:toasterModelNumber>Super Toastamatic 2000</toast:toasterModelNumber>
+         *       <toast:toasterStatus>up</toast:toasterStatus>
+         *     </toast:toaster>
+         *   </nc:data>
+         *   
+         *   otherwise, it contains a blank document:
+         *
+         *    <?xml version="1.0" encoding="UTF-8"?>
+         *    <nc:data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+         *    </nc:data>
+         *   
+         *   
+		 */
+		Document doc = gr.getData();
+		
+		
+		
+		// Create a DATA structure to read the contents of the XML document.
+		Data data = new Data(toasterCap);
+		Leaf toasterManufacturer = 
+			data.getData().linkLeaf(data.createLeaf("toasterManufacturer"));
+		
+		Leaf toasterModelNumber = 
+			data.getData().linkLeaf(data.createLeaf("toasterModelNumber"));
+		
+		Leaf toasterStatus = 
+			data.getData().linkLeaf(data.createLeaf("toasterStatus"));
+		
+		// Read the document into the DATA structure.
+		data.read(doc);
+		
+		// Get the toaster manufaturer from the DATA structure.
+		String manufacturer = 
+			data.getData().getLeafCanonicalValue(toasterManufacturer);
+		
+		// True if the XML document contains the information of 
+		// the toaster (the toaster exists), false otherwise.
+		boolean toasterExists = (manufacturer != null);
+		
+		if (!toasterExists)
+		{
+			// Load the toaster YANG module into the server.
+			Load l = new Load(handler.getSession(), toasterCap);
+			reply = l.executeSync(handler);
+			
+			// Check if there were any errors.
+			if (reply.containsErrors())
+			{
+				System.out.println("Can not load the toaster YANG module.");
+				return false;
+			}
+			
+			// Lock the CANDIDATE datastore.
+			Lock lk = new Lock(handler.getSession(), Datastore.candidate);
+			reply = lk.executeSync(handler);
+			
+			
+			// Check if there were any errors.
+			if (reply.containsErrors())
+			{
+				System.out.println("Unable to lock the Candidate datastore.");
+				return false;
+			}
+			
+			
+			
+			// Building the toaster through an EDIT CONFIG operation.
+			// To create the toaster, with all its values, simply ask 
+			// for the establishment of the root node of the data structure 
+			// of the toaster in the configuration candidate datastore.
+			Config config = EditConfig.createConfig(toasterCap, "toaster{create}");
+			EditConfig ec = new EditConfig(handler.getSession(), 
+					Datastore.candidate, config);
+			
+			/*
+			 * The message being sent is like this:
+
+             *   <?xml version="1.0" encoding="UTF-8"?>
+             *   <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
+                                  nc:message-id="4">
+             *      <nc:edit-config>
+             *        <nc:target>
+             *         <nc:candidate/>
+             *        </nc:target>
+             *        <nc:config>
+             *          <toast:toaster 
+             *               nc:operation="create" 
+             *               xmlns:toast="http://netconfcentral.org/ns/toaster"/>
+             *        </nc:config>
+             *      </nc:edit-config>
+             *   </nc:rpc>
+			 */
+			reply = ec.executeSync(handler);
+			
+			// Check if there were any errors.
+			if (reply.containsErrors())
+			{
+				System.out.println("Unable to create the toaster.");
+				return false;
+			}
+			
+			
+			// Performs a commit of the candidate datastore, 
+			// making the changes you made available to the system.
+			Commit c = new Commit(handler.getSession());
+			reply = c.executeSync(handler);
+			
+			// Check if there were any errors.
+			if (reply.containsErrors())
+			{
+				System.out.println("Unable to commit the candidate datastore.");
+				return false;
+			}
+			
+			// Unlock the Candidate datastore.
+			Unlock ul = new Unlock(handler.getSession(), Datastore.candidate);
+			ul.execute(handler);
+			
+		}
+		
+		// Rerun the GET operation to retrieve all the 
+		// information of the toaster.
+		reply = g.executeSync(handler);
+		
+		// Check if There Were Any errors.
+		if (reply.containsErrors())
+		{
+			System.out.println("The information can not be found on the toaster.");
+			return false;
+		}
+		
+		// Get the information about the toaster.
+		gr = g.new GetReply(reply);
+		doc = gr.getData();
+		data.read(doc);
+		
+		manufacturer = data.getData().getLeafCanonicalValue(toasterManufacturer);
+		String modelNumber = data.getData().getLeafCanonicalValue(toasterModelNumber);
+		String status = data.getData().getLeafCanonicalValue(toasterStatus);
+		
+		
+		// View the features of the toaster.
+		System.out.println("Available toaster:");
+		System.out.println();
+		System.out.println("Manufacturer -> " + manufacturer);
+		System.out.println("Model Number -> " + modelNumber);
+		System.out.println("Status       -> " + status);
+		
+		// If the state of the toaster is 'down' the toaster can not be used.
+		if (status.equals("down"))
+		{
+			System.out.println("The toaster is switched off!");
+			System.out.println("It may not be used.");
+			return false;
+		}
+		
+		
+		// The toaster exists at this point.
+        return true;
+	}
+
+	
+	...
+
+}
+
+
+
+}}}
+
+
 || *Step 7 - Video 1* || *Step 7 - Video 2* || *Step 7 - Video 3* ||
 || <wiki:video url="http://www.youtube.com/watch?v=9EGwSlzO5U0"/> || <wiki:video url="http://www.youtube.com/watch?v=W7us9IcMrMQ"/> || <wiki:video url="http://www.youtube.com/watch?v=Cs0cROQITyQ"/> ||
 
