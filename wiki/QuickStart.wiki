@@ -184,7 +184,7 @@ public class Toaster {
 	private static String uname = "netconf";
 	
 	// The password.
-	private static String passwd = "pippo";
+	private static String passwd = "passwd";
 	
 	// The SSH-2 Netconf Sybsystem.
 	private static String subsystem = "netconf";
