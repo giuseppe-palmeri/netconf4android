@@ -109,6 +109,7 @@ public class Toaster extends Activity
 
 						@Override
 						public void run() {
+							makingToast = false;
 							makeToastB.setText(R.string.textMakeToast);
 							makeToastB.setEnabled(true);
 						}
