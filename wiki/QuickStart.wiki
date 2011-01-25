@@ -758,8 +758,10 @@ public class Toaster {
 }}}
 
 
-|| *Step 7 - Video 1* || *Step 7 - Video 2* || *Step 7 - Video 3* ||
-|| <wiki:video url="http://www.youtube.com/watch?v=9EGwSlzO5U0"/> || <wiki:video url="http://www.youtube.com/watch?v=W7us9IcMrMQ"/> || <wiki:video url="http://www.youtube.com/watch?v=Cs0cROQITyQ"/> ||
+|| *Step 7 - Video 1* || *Step 7 - Video 2* || 
+|| <wiki:video url="http://www.youtube.com/watch?v=9EGwSlzO5U0"/> || <wiki:video url="http://www.youtube.com/watch?v=W7us9IcMrMQ"/> || 
+|| *Step 7 - Video 3* ||
+|| <wiki:video url="http://www.youtube.com/watch?v=Cs0cROQITyQ"/> ||
 
 
 ==Step 8: Enable Notifications==
