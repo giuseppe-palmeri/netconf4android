@@ -30,7 +30,7 @@ Please note that for our example, for simplicity, the user with which you connec
 
 Only a super user can dynamically load a module and initialize it.
 
-A better Android (and no Java) version of our example is [http://code.google.com/p/netconf4android/downloads/detail?name=Netconf4Android.zip Android Netconf Toaster].
+A better Android (and no Java) version of our example is [http://code.google.com/p/netconf4android/downloads/detail?name=AndroidNetconfToaster.zip Android Netconf Toaster].
 
 This is an Eclipse project that you can safely explore and from which to take ideas for your Android applications.
 
@@ -505,9 +505,13 @@ public class Toaster {
 
 ==Step 7: Load the Toaster YANG Module and Initialize It==
 
+Now is the time to check if there is the Toaster YANG module on the server.
+If not, we ask to be loaded and make it available.
+Then proceed with its initialization.
+
+If the Toaster YANG module is already present and the datastore of the capability has already been initialized, no action is taken.
+
 {{{
-
-
 
 package com.vhosting.netconf.example;
 
@@ -760,6 +764,8 @@ public class Toaster {
 
 ==Step 8: Enable Notifications==
 
+In this passage we see how to handle the notifications and how to ask for a subscription to receive notifications.
+
 {{{
 
 
@@ -895,6 +901,8 @@ public class Toaster {
 
 
 ==Step 9: Make Toasts==
+
+Our example ends by implementing everything you need to ask the server to make toast.
 
 {{{
 
@@ -1117,5 +1125,15 @@ public class Toaster {
 
 ==Step 10: Final Note==
 
+The source code of our example can be downloaded [http://code.google.com/p/netconf4android/downloads/list here].
+
+Note: This archive contains only the source of the example.
+
+
+
+
+For any questions on our example is that on this project, please feel free to contact me at:
+
+        g.palmeri @ yahoo.it
 
 Copyright (c) 2010 Giuseppe Palmeri
