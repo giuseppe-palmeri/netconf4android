@@ -1,4 +1,5 @@
 #summary Learn to quickly create an application on Android and Java with Netconf4Android.
+#labels Featured,Phase-Implementation,Phase-Requirements,Phase-Deploy,Phase-Design,RFC4741,RFC4742,RFC6020
 
 ==Introduction==
 
