@@ -58,6 +58,7 @@ public class Toaster extends Activity
 	private boolean makingToast;
 	private String host;
 	private int port;
+	private String label;
 	private String login;
 	private String passwd;
 	private String subsystem;
@@ -231,6 +232,7 @@ public class Toaster extends Activity
 				}
 			});
 
+			this.label = sp.getString("label", "");
 			this.host = sp.getString("host", "");
 			this.port = sp.getInt("port", 0);
 			this.login = sp.getString("login", "");
@@ -352,7 +354,7 @@ public class Toaster extends Activity
 			authInfo.removeProxyHost();
 		}
 
-		catcher = new NetconfSshCather("toaster", authInfo, subsystem);
+		catcher = new NetconfSshCather(label, authInfo, subsystem);
 
 		/* The log is full enabled. */
 		NetconfCatcher.enableLog(NetconfCatcher.LogLevel.MESSAGES);
