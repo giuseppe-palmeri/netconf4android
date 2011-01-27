@@ -1,8 +1,0 @@
-com.vhosting.netconf
-com.vhosting.netconf.example
-com.vhosting.netconf.frame
-com.vhosting.netconf.messages
-com.vhosting.netconf.notification
-com.vhosting.netconf.transport
-com.vhosting.netconf.transport.ssh
-com.vhosting.netconf.yuma
