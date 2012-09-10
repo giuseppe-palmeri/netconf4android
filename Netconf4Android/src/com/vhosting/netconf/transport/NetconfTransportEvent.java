@@ -50,15 +50,15 @@ public class NetconfTransportEvent {
 		
 		/**
 		 * The connection is closed by the server.
-		 * @see NetconfTransportEvent#getTransortError()
-		 * @see NetconfTransportEvent#getTransortErrorException()
+		 * @see NetconfTransportEvent#getTransportError()
+		 * @see NetconfTransportEvent#getTransportErrorException()
 		 */
 		CONNECTION_CLOSED_BY_SERVER,
 		
 		/**
 	     * The connection can not be opened.
-	     * @see NetconfTransportEvent#getTransortError()
-		 * @see NetconfTransportEvent#getTransortErrorException()
+	     * @see NetconfTransportEvent#getTransportError()
+		 * @see NetconfTransportEvent#getTransportErrorException()
 		 */
 		CONNECTION_CANNOT_BE_OPENED,
 	}
