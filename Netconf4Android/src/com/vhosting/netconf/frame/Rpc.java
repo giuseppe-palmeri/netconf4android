@@ -23,7 +23,7 @@ import com.vhosting.netconf.transport.Session;
  * Nothing prevents, however, be used freely.
  * 
  * @author Giuseppe Palmeri
- * @version 1.00, 09/10/2010
+ * @version 1.01, 09/10/2010
  */
 public class Rpc extends IdentityCreator
 {
@@ -126,8 +126,10 @@ public class Rpc extends IdentityCreator
 		String basePrefix = Session.BASE_1_0.getPrefix();
 		rpc.setPrefix(basePrefix);
 
-		rpc.setAttributeNS(Session.BASE_1_0.getNamespaceURI(), basePrefix
-				+ ":message-id", Integer.toString(messageId));
+		//rpc.setAttributeNS(Session.BASE_1_0.getNamespaceURI(), basePrefix
+		//		+ ":message-id", Integer.toString(messageId));
+		
+		rpc.setAttribute("message-id", Integer.toString(messageId));
 
 		Capability[] caps = session.getCapabilitiesOnServer();
 

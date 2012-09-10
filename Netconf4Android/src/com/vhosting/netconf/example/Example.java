@@ -176,19 +176,23 @@ public class Example
 	}
 
 	public static final void main(String s[]) throws IOException {
+		boolean beginIsPrint = false;
 		while (true)
 		{
-			System.out.println("Netconf Toaster Example");
-			
-			URL u = Example.class.getResource("_LICENSE.txt");
-			InputStream is = u.openStream();
-			
-			int i = 0;
-			while ((i = is.read()) != -1)
+			if (!beginIsPrint)
 			{
-				System.out.print((char)i);
+				System.out.println("Netconf Toaster Example");
+				
+				URL u = Example.class.getResource("_LICENSE.txt");
+				InputStream is = u.openStream();
+				
+				int i = 0;
+				while ((i = is.read()) != -1)
+				{
+					System.out.print((char)i);
+				}
+				beginIsPrint = true;
 			}
-			
 			System.out.println();
 			System.out.println("Please, specific an action...");
 			System.out.println("1. Configure the connection parameters;");
@@ -267,7 +271,7 @@ public class Example
 
 			@Override
 			public void processTransportEvents(NetconfTransportEvent event) {
-				Exception e = event.getTransortErrorException();
+				Exception e = event.getTransportErrorException();
 				if (e != null)
 				{
 					System.out.println(e.getMessage());

@@ -23,7 +23,7 @@ import com.vhosting.netconf.frame.RpcReplyErrorMessage;
  * This class represents the RPC Reply message in the Netconf protocol.
  * 
  * @author Giuseppe Palmeri
- * @version 1.00, 02/11/2010
+ * @version 1.01, 02/11/2010
  */
 public class RpcReplyMsg implements Msg, RpcReply
 {
@@ -75,7 +75,9 @@ public class RpcReplyMsg implements Msg, RpcReply
 		Element rpcReply = (Element) doc.getElementsByTagNameNS(base_1_0_xmlns,
 				"rpc-reply").item(0);
 
-		h.messageId = rpcReply.getAttributeNS(base_1_0_xmlns, "message-id");
+		//h.messageId = rpcReply.getAttributeNS(base_1_0_xmlns, "message-id");
+		h.messageId = rpcReply.getAttribute("message-id");
+		
 		if (h.messageId.equals(""))
 			h.messageId = null;
 

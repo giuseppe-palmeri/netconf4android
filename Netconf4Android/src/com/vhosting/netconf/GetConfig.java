@@ -75,7 +75,7 @@ public class GetConfig extends Operation
 				operation.createContainer("source"));
 		Leaf s = sou.linkLeaf(operation.createLeaf(source.getName()));
 		sou.assignLeaf(s, "");
-
+		operation.getOutput().linkAnyxml(outData);
 	}
 
 	/**

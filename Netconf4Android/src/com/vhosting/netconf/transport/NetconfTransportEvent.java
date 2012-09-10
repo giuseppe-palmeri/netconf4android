@@ -78,7 +78,7 @@ public class NetconfTransportEvent {
 	 * Return the transport error if present.
 	 * @return The Netconf transport error; null if the event no have errors.
 	 */
-	public NetconfTransportError getTransortError()
+	public NetconfTransportError getTransportError()
 	{
 		return e;
 	}
@@ -87,7 +87,7 @@ public class NetconfTransportEvent {
 	 * Return the transport error exception if present.
 	 * @return The Netconf transport error exception; null if the event no have error exceptions.
 	 */
-	public Exception getTransortErrorException()
+	public Exception getTransportErrorException()
 	{
 		return (Exception) e;
 	}
