@@ -5,6 +5,9 @@ import java.net.InetSocketAddress;
 
 import javax.xml.xpath.XPath;
 
+import org.w3c.dom.Document;
+
+import com.sun.org.apache.xerces.internal.util.DOMUtil;
 import com.vhosting.netconf.CapabilityException;
 import com.vhosting.netconf.CloseSession;
 import com.vhosting.netconf.Commit;
@@ -14,7 +17,9 @@ import com.vhosting.netconf.Datastore;
 import com.vhosting.netconf.DeleteConfig;
 import com.vhosting.netconf.DiscardChanges;
 import com.vhosting.netconf.Get;
+import com.vhosting.netconf.Get.GetReply;
 import com.vhosting.netconf.GetConfig;
+import com.vhosting.netconf.GetConfig.GetConfigReply;
 import com.vhosting.netconf.KillSession;
 import com.vhosting.netconf.Lock;
 import com.vhosting.netconf.PartialLock;
@@ -23,6 +28,8 @@ import com.vhosting.netconf.Unlock;
 import com.vhosting.netconf.Validate;
 import com.vhosting.netconf.XPathSelections;
 import com.vhosting.netconf.frame.RpcHandler;
+import com.vhosting.netconf.frame.RpcReply;
+import com.vhosting.netconf.messages.DOMUtils;
 import com.vhosting.netconf.transport.NetconfCatcher;
 import com.vhosting.netconf.transport.NetconfCatcherListener;
 import com.vhosting.netconf.transport.NetconfTransportEvent;
@@ -37,7 +44,7 @@ public class Test
 	{
 		/* Prepare the connection */
 		InetSocketAddress addr = new InetSocketAddress("vhosting.eu.org", 22);
-        NetconfSshCather catcher = new NetconfSshCather("test", new SshAuthInfo(addr, "netconf", "pippo"));
+        NetconfSshCather catcher = new NetconfSshCather("test", new SshAuthInfo(addr, "netconf", "net1231"));
 		
         /* The log is full enabled. */
         NetconfCatcher.enableLog(NetconfCatcher.LogLevel.MESSAGES);
@@ -49,7 +56,6 @@ public class Test
 			@Override
 			public void processTransportEvents(NetconfTransportEvent event) {
 				System.out.println("An event occur.");
-				
 			}
 			
 			@Override
@@ -57,33 +63,33 @@ public class Test
 				
 				try
 				{
-					copyConfig(rpcHandler);
+					//copyConfig(rpcHandler);
 					
-					deleteConfig(rpcHandler);
+					//deleteConfig(rpcHandler);
 					
-					commit(rpcHandler);
+					//commit(rpcHandler);
 					
-					createSubscription(rpcHandler);
+					//createSubscription(rpcHandler);
 					
-					discardChanges(rpcHandler);
+					//discardChanges(rpcHandler);
 					
 					get(rpcHandler);
 					
 					getConfig(rpcHandler);
 					
-					killSession(rpcHandler);
+					//killSession(rpcHandler);
 					
-					lock(rpcHandler);
+					//lock(rpcHandler);
 					
-					partialLock(rpcHandler);
+					//partialLock(rpcHandler);
 					
-					partialUnLock(rpcHandler);
+					//partialUnLock(rpcHandler);
 					
-					unlock(rpcHandler);
+					//unlock(rpcHandler);
 					
-					validate(rpcHandler);
+					//validate(rpcHandler);
 					
-				    testOnCloseSession(rpcHandler);
+				    //testOnCloseSession(rpcHandler);
 				}
 				catch(Exception e)
 				{
@@ -124,15 +130,27 @@ public class Test
 	private static void discardChanges(RpcHandler rpcHandler) throws IOException, CapabilityException {
 		DiscardChanges cc = new DiscardChanges(rpcHandler.getSession());
 		cc.executeSync(rpcHandler);
+		
 	}
 	private static void get(RpcHandler rpcHandler) throws IOException, CapabilityException {
 		Get cc = new Get(rpcHandler.getSession());
-		cc.executeSync(rpcHandler);
+		RpcReply reply = cc.executeSync(rpcHandler);
+		GetReply get = cc.new GetReply(reply);
+		printXmlData(get.getData());
 	}
 	private static void getConfig(RpcHandler rpcHandler) throws IOException, CapabilityException {
 		GetConfig cc = new GetConfig(rpcHandler.getSession(), Datastore.running);
-		cc.executeSync(rpcHandler);
+		RpcReply reply = cc.executeSync(rpcHandler);
+		GetConfigReply gcr = cc.new GetConfigReply(reply);
+		printXmlData(gcr.getData());
+
 	}
+	private static void printXmlData(Document data) throws IOException {
+		System.out.println("\n## DATA AS XML DOCUMENT ##");
+		DOMUtils.dump(data, System.out);
+		System.out.println("## END OF DATA AS XML DOCUMENT ##");
+	}
+
 	private static void killSession(RpcHandler rpcHandler) throws IOException, CapabilityException {
 		KillSession cc = new KillSession(rpcHandler.getSession(), 3);
 		cc.executeSync(rpcHandler);
