@@ -3,11 +3,8 @@ package com.vhosting.netconf.example;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-import javax.xml.xpath.XPath;
-
 import org.w3c.dom.Document;
 
-import com.sun.org.apache.xerces.internal.util.DOMUtil;
 import com.vhosting.netconf.CapabilityException;
 import com.vhosting.netconf.CloseSession;
 import com.vhosting.netconf.Commit;
@@ -63,33 +60,33 @@ public class Test
 				
 				try
 				{
-					//copyConfig(rpcHandler);
+					copyConfig(rpcHandler);
 					
-					//deleteConfig(rpcHandler);
+					deleteConfig(rpcHandler);
 					
-					//commit(rpcHandler);
+					commit(rpcHandler);
 					
-					//createSubscription(rpcHandler);
+					createSubscription(rpcHandler);
 					
-					//discardChanges(rpcHandler);
+					discardChanges(rpcHandler);
 					
 					get(rpcHandler);
 					
 					getConfig(rpcHandler);
 					
-					//killSession(rpcHandler);
+					killSession(rpcHandler);
 					
-					//lock(rpcHandler);
+					lock(rpcHandler);
 					
-					//partialLock(rpcHandler);
+					partialLock(rpcHandler);
 					
-					//partialUnLock(rpcHandler);
+					partialUnLock(rpcHandler);
 					
-					//unlock(rpcHandler);
+					unlock(rpcHandler);
 					
-					//validate(rpcHandler);
+					validate(rpcHandler);
 					
-				    //testOnCloseSession(rpcHandler);
+				    testOnCloseSession(rpcHandler);
 				}
 				catch(Exception e)
 				{
