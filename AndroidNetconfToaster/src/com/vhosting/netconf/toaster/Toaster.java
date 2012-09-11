@@ -108,6 +108,8 @@ public class Toaster extends Activity {
 							makingToast = false;
 							makeToastB.setText(R.string.textMakeToast);
 							makeToastB.setEnabled(true);
+							materialB.setEnabled(true);
+							donenessB.setEnabled(true);
 						}
 					};
 					runOnUiThread(r);
@@ -178,6 +180,8 @@ public class Toaster extends Activity {
 							public void run() {
 								makingToast = true;
 								makeToastB.setText(R.string.cancel_toast);
+								materialB.setEnabled(false);
+								donenessB.setEnabled(false);
 							}
 						};
 						runOnUiThread(r);
@@ -198,6 +202,8 @@ public class Toaster extends Activity {
 							public void run() {
 								makingToast = false;
 								makeToastB.setText(R.string.textMakeToast);
+								materialB.setEnabled(true);
+								donenessB.setEnabled(true);
 							}
 						};
 						runOnUiThread(r);
