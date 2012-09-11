@@ -12,8 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Connection extends Activity
-{
+public class Connection extends Activity {
 
 	private SharedPreferences sp;
 	private int id;
@@ -30,8 +29,7 @@ public class Connection extends Activity
 
 		boolean isPresent = sp.getBoolean("isPresent", false);
 
-		if (isPresent)
-		{
+		if (isPresent) {
 			EditText label = (EditText) findViewById(R.id.editLabel);
 			label.setText(sp.getString("label", ""));
 
@@ -46,7 +44,7 @@ public class Connection extends Activity
 
 			EditText passwd = (EditText) findViewById(R.id.editPasswd);
 			passwd.setText(sp.getString("passwd", ""));
- 
+
 			EditText subsystem = (EditText) findViewById(R.id.editSubsystem);
 			subsystem.setText(sp.getString("subsystem", ""));
 
@@ -62,13 +60,11 @@ public class Connection extends Activity
 
 		Button save = (Button) findViewById(R.id.saveButton);
 
-		save.setOnClickListener(new OnClickListener()
-		{
+		save.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if (isSaveable())
 					saveChanges();
-				else
-				{
+				else {
 					Context context = getApplicationContext();
 					CharSequence text = getString(R.string.cannotSave);
 					int duration = Toast.LENGTH_SHORT;
@@ -81,8 +77,7 @@ public class Connection extends Activity
 
 		Button discard = (Button) findViewById(R.id.discardButton);
 
-		discard.setOnClickListener(new OnClickListener()
-		{
+		discard.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				discardChanges();
 			}
@@ -138,21 +133,18 @@ public class Connection extends Activity
 		int i = 0;
 		boolean exist = false;
 
-		for (String s : confs.split(":"))
-		{
+		for (String s : confs.split(":")) {
 			if (s.equals(""))
 				continue;
 			int c = Integer.parseInt(s);
 
-			if (c == id)
-			{
+			if (c == id) {
 				exist = true;
 				break;
 			}
 			i++;
 		}
-		if (!exist)
-		{
+		if (!exist) {
 			Editor ed = pref.edit();
 
 			ed.putString("confs", confs + ":" + id);

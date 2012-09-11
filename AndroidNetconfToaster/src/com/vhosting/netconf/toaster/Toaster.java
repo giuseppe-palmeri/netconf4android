@@ -14,8 +14,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -51,8 +53,7 @@ import com.vhosting.netconf.transport.ssh.SshAuthInfo;
 import com.vhosting.netconf.yuma.Load;
 import com.vhosting.netconf.yuma.YANGCapability;
 
-public class Toaster extends Activity
-{
+public class Toaster extends Activity {
 	private SharedPreferences sp;
 	private int id;
 	private boolean makingToast;
@@ -76,18 +77,15 @@ public class Toaster extends Activity
 	private Runnable r;
 	private Handler h = new Handler();
 	private ScrollView scroll;
-	
-	
-	
+
 	private static final BlockingQueue<Boolean> queue = new ArrayBlockingQueue<Boolean>(
 			1, true);
 
 	private static YANGCapability toasterCap = new YANGCapability(
+			"http://netconfcentral.org/ns/toaster",
 			"http://netconfcentral.org/ns/toaster", "toast", "toaster");
 
-	
-	private NotificationsListener nl = new NotificationsListener()
-	{
+	private NotificationsListener nl = new NotificationsListener() {
 		public void processNotification(NotificationEvent notification) {
 
 			Notification n = new Notification(toasterCap, "toastDone");
@@ -98,15 +96,12 @@ public class Toaster extends Activity
 			String status = n.getNotification().getLeafCanonicalValue(
 					toastStatus);
 
-			if (status != null)
-			{
+			if (status != null) {
 				// Done.
-				if (status.equals("done"))
-				{
+				if (status.equals("done")) {
 					printlnDown("The toast is done!");
 
-					Runnable r = new Runnable()
-					{
+					Runnable r = new Runnable() {
 
 						@Override
 						public void run() {
@@ -130,7 +125,6 @@ public class Toaster extends Activity
 			}
 		}
 	};
-	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -141,8 +135,7 @@ public class Toaster extends Activity
 		sp = getSharedPreferences(id + ".conf", Context.MODE_PRIVATE);
 		boolean isPresent = sp.getBoolean("isPresent", false);
 
-		if (isPresent)
-		{
+		if (isPresent) {
 			toaster = (TextView) findViewById(R.id.toaster);
 			text = (TextView) findViewById(R.id.text);
 			makeToastB = (Button) findViewById(R.id.buttonMakeToast);
@@ -154,30 +147,33 @@ public class Toaster extends Activity
 			donenessB.setEnabled(true);
 
 			scroll = (ScrollView) findViewById(R.id.ScrollView02);
-			
-			materialB.setOnClickListener(new OnClickListener()
-			{
+			scroll.setOnTouchListener(new OnTouchListener() {
+
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+
+					return true;
+				}
+			});
+
+			materialB.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					choiceMaterial();
 				}
 			});
 
-			donenessB.setOnClickListener(new OnClickListener()
-			{
+			donenessB.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					choiceDonenes();
 				}
 
 			});
 
-			makeToastB.setOnClickListener(new OnClickListener()
-			{
+			makeToastB.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 
-					if (!makingToast)
-					{
-						Runnable r = new Runnable()
-						{
+					if (!makingToast) {
+						Runnable r = new Runnable() {
 							@Override
 							public void run() {
 								makingToast = true;
@@ -185,26 +181,19 @@ public class Toaster extends Activity
 							}
 						};
 						runOnUiThread(r);
-						r = new Runnable()
-						{
+						r = new Runnable() {
 							@Override
 							public void run() {
-								try
-								{
+								try {
 									makeToast(rpcHandler);
-								}
-								catch (IOException e)
-								{
+								} catch (IOException e) {
 									e.printStackTrace();
 								}
 							}
 						};
 						makeToastB.post(r);
-					}
-					else
-					{
-						Runnable r = new Runnable()
-						{
+					} else {
+						Runnable r = new Runnable() {
 							@Override
 							public void run() {
 								makingToast = false;
@@ -212,16 +201,12 @@ public class Toaster extends Activity
 							}
 						};
 						runOnUiThread(r);
-						r = new Runnable()
-						{
+						r = new Runnable() {
 							@Override
 							public void run() {
-								try
-								{
+								try {
 									cancelToast(rpcHandler);
-								}
-								catch (IOException e)
-								{
+								} catch (IOException e) {
 									e.printStackTrace();
 								}
 							}
@@ -242,28 +227,22 @@ public class Toaster extends Activity
 			this.proxyHost = sp.getString("proxyHost", "");
 			this.proxyPort = sp.getInt("proxyPort", 0);
 
-
-			Runnable r = new Runnable()
-			{
+			Runnable r = new Runnable() {
 				@Override
 				public void run() {
 					connect();
 				}
 			};
-			
+
 			h.post(r);
-			
-			
-		}
-		else
-		{
+
+		} else {
 
 			finish();
 		}
 
 	}
 
-	
 	@Override
 	public void finish() {
 		end();
@@ -286,20 +265,14 @@ public class Toaster extends Activity
 
 	private void printTop(final String s) {
 
-		
-		Runnable r = new Runnable()
-		{
+		Runnable r = new Runnable() {
 			@Override
 			public void run() {
-				try
-				{
-					if (s != null)
-					{
+				try {
+					if (s != null) {
 						toaster.setText(s);
 						return;
-					}
-					else
-					{
+					} else {
 						toaster.setText("");
 						System.out.println(machineInfo);
 						toaster.append(machineInfo + "");
@@ -310,9 +283,7 @@ public class Toaster extends Activity
 						toaster.append("Doneness: " + Integer.parseInt(a)
 								+ "\n");
 					}
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					toaster.setText(R.string.waitConnection);
 				}
 			}
@@ -321,16 +292,15 @@ public class Toaster extends Activity
 	}
 
 	private void printlnDown(final String s) {
-		Runnable r = new Runnable()
-		{
+		Runnable r = new Runnable() {
 			@Override
 			public void run() {
 				System.out.println(s);
 				text.append(s + "\n");
-				scroll.post(new Runnable() { 
-				    public void run() { 
-				        scroll.fullScroll(ScrollView.FOCUS_DOWN); 
-				    } 
+				scroll.post(new Runnable() {
+					public void run() {
+						scroll.fullScroll(ScrollView.FOCUS_DOWN);
+					}
 				});
 			}
 		};
@@ -339,18 +309,14 @@ public class Toaster extends Activity
 
 	private void connect() {
 
-		
 		/* Prepare the connection */
 		InetSocketAddress addr = new InetSocketAddress(host, port);
 		SshAuthInfo authInfo = new SshAuthInfo(addr, login, passwd);
 
-		if (hasProxy)
-		{
+		if (hasProxy) {
 			InetSocketAddress h = new InetSocketAddress(proxyHost, proxyPort);
 			authInfo.setProxyHost(h);
-		}
-		else
-		{
+		} else {
 			authInfo.removeProxyHost();
 		}
 
@@ -360,56 +326,44 @@ public class Toaster extends Activity
 		NetconfCatcher.enableLog(NetconfCatcher.LogLevel.MESSAGES);
 
 		/* The body of the application */
-		catcher.setNetconfCatcherListener(new NetconfCatcherListener()
-		{
+		catcher.setNetconfCatcherListener(new NetconfCatcherListener() {
 			public void processTransportEvents(NetconfTransportEvent event) {
-				Exception e = event.getTransortErrorException();
+				Exception e = event.getTransportErrorException();
 				if (e != null)
 					e.printStackTrace();
-				if (e != null)
-				{
+				if (e != null) {
 					printlnDown(e.getMessage());
 				}
 
 				printTop("No connection.");
 
-				if (event.getEventType() == EventType.CONNECTION_CLOSED_BY_SERVER)
-				{
+				if (event.getEventType() == EventType.CONNECTION_CLOSED_BY_SERVER) {
 					printlnDown("The connection is closed by server.");
-				}
-				else if (event.getEventType() == EventType.CONNECTION_CLOSED_BY_USER)
-				{
+				} else if (event.getEventType() == EventType.CONNECTION_CLOSED_BY_USER) {
 					printlnDown("The connection is closed by user.");
-				}
-				else if (event.getEventType() == EventType.CONNECTION_CANNOT_BE_OPENED)
-				{
+				} else if (event.getEventType() == EventType.CONNECTION_CANNOT_BE_OPENED) {
 					printlnDown("The connection cannot be opened.");
 				}
 			}
 
 			public void processReadyForRpcRequests(final RpcHandler rpcHandler) {
- 
+
 				Toaster.this.rpcHandler = rpcHandler;
 				rpcHandler.setNotificationsListener(nl);
-				try
-				{
+				try {
 					printlnDown("");
 					printlnDown("The server connection has been established...");
 
 					printlnDown("Check the existence of the toaster on the server...");
 					boolean check = checkToaster(catcher, rpcHandler);
-					if (!check)
-					{
+					if (!check) {
 						printlnDown("Create the toaster...");
 						boolean hasToaster = createToaster(catcher, rpcHandler);
 
-						if (!hasToaster)
-						{
+						if (!hasToaster) {
 							printlnDown("Unable to create the toaster.");
 							return;
-						}
-						else
-						{
+						} else {
 							hasToaster = checkToaster(catcher, rpcHandler);
 							if (!hasToaster)
 								return;
@@ -428,8 +382,7 @@ public class Toaster extends Activity
 
 					RpcReply rep = create.executeSync(rpcHandler);
 
-					if (rep.containsErrors())
-					{
+					if (rep.containsErrors()) {
 						printlnDown("Unable to start the notifications system.");
 						catcher.disconnect();
 						return;
@@ -438,8 +391,7 @@ public class Toaster extends Activity
 					printlnDown("Notifications system is started.");
 					printlnDown("The toaster is now ready to process RPC operations.");
 
-					r = new Runnable()
-					{
+					r = new Runnable() {
 						@Override
 						public void run() {
 							makingToast = false;
@@ -448,9 +400,7 @@ public class Toaster extends Activity
 					};
 					runOnUiThread(r);
 
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -458,7 +408,7 @@ public class Toaster extends Activity
 		});
 
 		Runnable connection = catcher.getRunnableConnection();
-		
+
 		/* Start the connection */
 		Thread t = new Thread(connection);
 		t.start();
@@ -475,8 +425,7 @@ public class Toaster extends Activity
 		sf.addFilter(toasterCap).addFilterString("toaster");
 		g.setSubtreeFilter(sf);
 		RpcReply rep = g.executeSync(rpcHandler);
-		if (rep.containsErrors())
-		{
+		if (rep.containsErrors()) {
 			printlnDown("Unable to identify the toaster.");
 			return false;
 		}
@@ -494,7 +443,6 @@ public class Toaster extends Activity
 
 		data.read(doc);
 
-
 		String manufacturer = data.getData().getLeafCanonicalValue(
 				toasterManufacturer);
 		String modelNumber = data.getData().getLeafCanonicalValue(
@@ -505,15 +453,14 @@ public class Toaster extends Activity
 		if (manufacturer == null)
 			return false;
 
-		String s = "" + manufacturer + "\n" + "" + modelNumber + "\n" + "Status: "
-				+ status + "\n";
+		String s = "" + manufacturer + "\n" + "" + modelNumber + "\n"
+				+ "Status: " + status + "\n";
 
 		this.machineInfo = s;
 
 		printTop();
 
-		if (status.equals("down"))
-		{
+		if (status.equals("down")) {
 			printlnDown("Ops... note that the toaster is switched off!");
 		}
 
@@ -525,15 +472,13 @@ public class Toaster extends Activity
 		Load l = new Load(rpcHandler.getSession(), toasterCap);
 		RpcReply rep = l.executeSync(rpcHandler);
 
-		if (rep.containsErrors())
-		{
+		if (rep.containsErrors()) {
 			printlnDown("Can not load the toaster module.");
 			return false;
 		}
 		Lock lk = new Lock(rpcHandler.getSession(), Datastore.candidate);
 		rep = lk.executeSync(rpcHandler);
-		if (rep.containsErrors())
-		{
+		if (rep.containsErrors()) {
 			printlnDown("Can not lock the Candidate database.");
 			return false;
 		}
@@ -543,8 +488,7 @@ public class Toaster extends Activity
 				Datastore.candidate, config);
 
 		rep = ec.executeSync(rpcHandler);
-		if (rep.containsErrors())
-		{
+		if (rep.containsErrors()) {
 			printlnDown("Can not create the toaster.");
 
 			return false;
@@ -553,8 +497,7 @@ public class Toaster extends Activity
 		Commit c = new Commit(rpcHandler.getSession());
 		rep = c.executeSync(rpcHandler);
 
-		if (rep.containsErrors())
-		{
+		if (rep.containsErrors()) {
 			printlnDown("Can not create the toaster.");
 			return false;
 		}
@@ -574,8 +517,7 @@ public class Toaster extends Activity
 
 		RpcReply rep = rpcHandler.sendSyncRpc(rpc);
 
-		if (rep.containsErrors())
-		{
+		if (rep.containsErrors()) {
 			printlnDown("Unable to cancel the request.");
 			return false;
 		}
@@ -619,7 +561,8 @@ public class Toaster extends Activity
 	}
 
 	private void end() {
-		if (catcher.isConnected()) showToast("Disconnect.");
+		if (catcher.isConnected())
+			showToast("Disconnect.");
 		catcher.disconnect();
 	}
 
@@ -638,8 +581,7 @@ public class Toaster extends Activity
 
 		builder.setTitle(R.string.textMaterial);
 		builder.setItems(R.array.itemMaterial,
-				new DialogInterface.OnClickListener()
-				{
+				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						type = which;
 						printTop();
@@ -651,16 +593,15 @@ public class Toaster extends Activity
 	}
 
 	private void choiceDonenes() {
-		
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(Toaster.this);
 		builder.setTitle(R.string.textCooking);
 		builder.setItems(R.array.itemDoneners,
-				new DialogInterface.OnClickListener()
-				{
+				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 
 						doneness = which;
-						printTop(); 
+						printTop();
 					}
 				});
 
@@ -678,14 +619,12 @@ public class Toaster extends Activity
 		v.setImageResource(R.drawable.toast);
 		builder.setView(v);
 		builder.setPositiveButton(R.string.ok,
-				new DialogInterface.OnClickListener()
-				{
+				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						// Nothing.
 					}
 				});
-		Runnable r = new Runnable()
-		{
+		Runnable r = new Runnable() {
 			@Override
 			public void run() {
 				AlertDialog dialog = builder.create();

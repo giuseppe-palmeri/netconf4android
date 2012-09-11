@@ -40,7 +40,8 @@
                     android:id="@+id/text1"
                     style="@style/Label"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp" >
                 </TextView>
             </TableRow>
 
@@ -53,7 +54,8 @@
                     android:id="@+id/text2"
                     style="@style/Host"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp" >
                 </TextView>
             </TableRow>
 
@@ -66,7 +68,8 @@
                     android:id="@+id/text3"
                     style="@style/Proxy"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp" >
                 </TextView>
             </TableRow>
         </TableLayout>

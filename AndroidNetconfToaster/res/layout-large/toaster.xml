@@ -36,7 +36,7 @@
             <ScrollView
                 android:id="@+id/ScrollView02"
                 android:layout_width="fill_parent"
-                android:layout_height="108dp"
+                android:layout_height="400dp"
                 android:layout_margin="10dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true" >
 
@@ -46,6 +46,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:editable="false"
+                    android:padding="90dp"
                     android:singleLine="false" >
                 </TextView>
             </ScrollView>
@@ -59,20 +60,20 @@
 
                 <Button
                     android:id="@+id/buttonMaterial"
-                    android:layout_width="100px"
+                    android:layout_width="200px"
                     android:layout_height="50px"
                     android:text="@string/textMaterial" >
                 </Button>
 
                 <Button
                     android:id="@+id/buttonCooking"
-                    android:layout_width="100px"
+                    android:layout_width="200px"
                     android:text="@string/textCooking" >
                 </Button>
 
                 <Button
                     android:id="@+id/buttonMakeToast"
-                    android:layout_width="100px"
+                    android:layout_width="200px"
                     android:layout_height="50px"
                     android:text="@string/textMakeToast" >
                 </Button>

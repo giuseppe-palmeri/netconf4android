@@ -28,8 +28,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Main extends Activity
-{ 
+public class Main extends Activity {
 	private static final int MENU_NEW_CONNECTION = 0;
 	private static final int MENU_INFO = 1;
 	private static final int MENU_HELP = 2;
@@ -67,13 +66,14 @@ public class Main extends Activity
 
 		cursor = new MyCursor(new String[] { "_id", "label", "host", "proxy" });
 
-		adapter = new SimpleCursorAdapter(this,
-				R.layout.main_row,
-				// Specify the row template to use.
+		adapter = new SimpleCursorAdapter(this, R.layout.main_row,
+		// Specify the row template to use.
 				cursor, // Pass in the cursor to bind to.
-				new String[] { "label", "host", "proxy" }, // Array of cursor columns to bind to.
-				new int[] { R.id.text1, R.id.text2, R.id.text3 })
-		{
+				new String[] { "label", "host", "proxy" }, // Array of cursor
+															// columns to bind
+															// to.
+				new int[] { R.id.text1, R.id.text2, R.id.text3 }) {
+			
 			@Override
 			public View getView(final int position, View convertView,
 					ViewGroup parent) {
@@ -81,16 +81,14 @@ public class Main extends Activity
 				View v = super.getView(position, convertView, parent);
 				ImageButton b = (ImageButton) v.findViewById(R.id.imageButton);
 
-				b.setOnClickListener(new OnClickListener()
-				{
+				b.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
 						int id = ((MyCursor) cursor).getId(position);
 						System.out.println(v);
 						goToToasterMachine(id);
 					}
 				});
-				b.setOnLongClickListener(new OnLongClickListener()
-				{
+				b.setOnLongClickListener(new OnLongClickListener() {
 
 					public boolean onLongClick(View v) {
 						int id = ((MyCursor) cursor).getId(position);
@@ -109,8 +107,7 @@ public class Main extends Activity
 
 		String confs = pref.getString("confs", "");
 
-		for (String s : confs.split(":"))
-		{
+		for (String s : confs.split(":")) {
 			if (s.equals(""))
 				continue;
 
@@ -119,12 +116,10 @@ public class Main extends Activity
 					Context.MODE_PRIVATE);
 			boolean b = p.getBoolean("isPresent", false);
 
-			if (b)
-			{
+			if (b) {
 
 				boolean exists = false;
-				if (!exists)
-				{
+				if (!exists) {
 					cursor.addRow(new Object[] {
 							c,
 
@@ -170,8 +165,7 @@ public class Main extends Activity
 
 	/* Handles item selections */
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId())
-		{
+		switch (item.getItemId()) {
 
 		case MENU_NEW_CONNECTION:
 			newConnection();
@@ -213,8 +207,7 @@ public class Main extends Activity
 	}
 
 	void showMessage(final int titleResId, final int docRawId) {
-		Runnable r = new Runnable()
-		{
+		Runnable r = new Runnable() {
 			public void run() {
 				AlertDialog.Builder builder3 = new AlertDialog.Builder(
 						Main.this);
@@ -231,8 +224,7 @@ public class Main extends Activity
 
 	static CharSequence readDoc(Activity activity, int fileRawId) {
 		BufferedReader in = null;
-		try
-		{
+		try {
 			in = new BufferedReader(new InputStreamReader(activity
 					.getResources().openRawResource(fileRawId)));
 			String line;
@@ -243,21 +235,13 @@ public class Main extends Activity
 			in = null;
 
 			return buffer;
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			return "";
-		}
-		finally
-		{
-			if (in != null)
-			{
-				try
-				{
+		} finally {
+			if (in != null) {
+				try {
 					in.close();
-				}
-				catch (IOException e)
-				{
+				} catch (IOException e) {
 					// Ignore
 				}
 			}
@@ -278,8 +262,7 @@ public class Main extends Activity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		switch (requestCode)
-		{
+		switch (requestCode) {
 		case CONNECTION_RESULT:
 			System.out.println("CONNECTION_RESULT");
 			populate();
@@ -292,14 +275,14 @@ public class Main extends Activity
 	}
 
 	private void goToToasterMachine(int id) {
-		
+
 		Context context = getApplicationContext();
 		CharSequence text = "Connect.";
 		int duration = Toast.LENGTH_SHORT;
 
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
-		
+
 		final Intent i = new Intent(Main.this, Toaster.class);
 		i.putExtra("id", id);
 		startActivityForResult(i, TOASTER_RESULT);
@@ -310,11 +293,9 @@ public class Main extends Activity
 
 		builder.setTitle(R.string.app_name);
 		builder.setItems(R.array.itemOptions,
-				new DialogInterface.OnClickListener()
-				{
+				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						switch (which)
-						{
+						switch (which) {
 						case 0: // OPEN
 							goToToasterMachine(id);
 							break;
@@ -343,8 +324,7 @@ public class Main extends Activity
 
 		String newConfs = "";
 
-		for (String s : confs.split(":"))
-		{
+		for (String s : confs.split(":")) {
 			if (s.equals(""))
 				continue;
 
@@ -373,14 +353,12 @@ public class Main extends Activity
 
 	}
 
-	class MyCursor extends MatrixCursor
-	{
+	class MyCursor extends MatrixCursor {
 
 		int idIdx;
 		Vector<Object[]> objs = new Vector<Object[]>();
 
-		public MyCursor(String[] columnNames)
-		{
+		public MyCursor(String[] columnNames) {
 			super(columnNames);
 			idIdx = this.getColumnIndex("_id");
 		}
@@ -388,12 +366,9 @@ public class Main extends Activity
 		@Override
 		public void addRow(Object[] columnValues) {
 
-			for (Object[] o : objs)
-			{
-				if (o[idIdx] == columnValues[idIdx])
-				{
-					for (int i = 0; i < columnValues.length; i++)
-					{
+			for (Object[] o : objs) {
+				if (o[idIdx] == columnValues[idIdx]) {
+					for (int i = 0; i < columnValues.length; i++) {
 						o[i] = columnValues[i];
 					}
 					return;
@@ -413,16 +388,13 @@ public class Main extends Activity
 
 	private void eula() {
 		boolean eulaAccepted = pref.getBoolean("eulaAccepted", false);
-		if (!eulaAccepted)
-		{
+		if (!eulaAccepted) {
 
-			Eula.show(this, new Eula.Listener()
-			{
+			Eula.show(this, new Eula.Listener() {
 
 				public void accepted() {
 					pref.edit().putBoolean("eulaAccepted", true).commit();
-					Runnable r = new Runnable()
-					{
+					Runnable r = new Runnable() {
 
 						@Override
 						public void run() {
