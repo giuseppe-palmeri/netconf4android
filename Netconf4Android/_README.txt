@@ -2,7 +2,7 @@
 Netconf4android - The Java/Android library for Netconf applications
 ===================================================================
 
-http://code.google.com/p/netconf4android/w/list
+http://giuseppe-palmeri.github.io/netconf4android/
 
 This is an API that implements the netconf protocol (RFC 4741) for
 building client applications.
@@ -23,7 +23,7 @@ and drive a remote firewall for example.
 - Please refer to the wiki page for more information on how to
   use this library:
 
-    http://code.google.com/p/netconf4android/w/list
+    http://giuseppe-palmeri.github.io/netconf4android/
 
 - This software includes the version build210 of Ganymed-SSH2
   library of Christian Plattner.

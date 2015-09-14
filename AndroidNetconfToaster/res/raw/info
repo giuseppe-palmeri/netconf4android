@@ -9,7 +9,8 @@ The main goal for this API is to provide valuable support for this protocol for 
 With this API and any Netconf server that supports certain capabilities, you can build an Android application to configure and drive a remote firewall for example.
 
 More information about Netconf4Android can be found at:
-http://code.google.com/p/netconf4android/
+
+http://giuseppe-palmeri.github.io/netconf4android/
 
 Copyright (c) 2011, Giuseppe Palmeri
 All right reserved.

@@ -2,11 +2,11 @@
 Android Netconf Toaster - An Android Netconf application for make toast.
 ===================================================================
 
-http://code.google.com/p/netconf4android/w/list
+http://giuseppe-palmeri.github.io/netconf4android/
 
 This implementation was produced according to the specific capacity:
 
-    http://netconfcentral.org/ns/toaster
+    http://www.netconfcentral.org/modulereport/toaster
 
 By Andy Bierman at Netconf Central.
 
@@ -32,11 +32,7 @@ pre-loaded from the server.
 Yuma Server is part of Yuma Tools, a great netconf Implementation
 using YANG modules for the instrumental part of a capability.
 
-    http://www.netconfcentral.org/download
-
-Yuma Tools is a project of Netconf Central.
-
-    http://www.netconfcentral.org
+    https://www.yumaworks.com
 
 
 - Please read the included LICENCE.txt
@@ -44,7 +40,7 @@ Yuma Tools is a project of Netconf Central.
 - Please refer to the wiki page for more information on how to
   use this software:
 
-    http://code.google.com/p/netconf4android/w/list
+    https://github.com/giuseppe-palmeri/netconf4android/wiki
 
 
 

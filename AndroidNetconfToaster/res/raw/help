@@ -8,9 +8,7 @@ It is an example of how to use the Netconf4Android API.
 What you need to make it work?
 
 To have to run this example, you must have access to a 
-YUMA Server that has the toaster capability:
-    
-http://netconfcentral.org/ns/toaster
+YUMA Server that has the toaster capability.
     
 This capability comes from the YANG module toaster.yang:
 
@@ -22,7 +20,7 @@ The YUMA Server is part of YUMA Tools Project.
 
 The home page of this project is:
 
-http://www.netconfcentral.org/
+http://www.yumaworks.com/
 
 From here you can find all necessary information about the project.
 
@@ -42,6 +40,6 @@ you can have a good point of beginning.
 
 The home page of the project is:
 
-http://code.google.com/p/netconf4android/
+http://giuseppe-palmeri.github.io/netconf4android/
   
 You'll find all necessary information.
